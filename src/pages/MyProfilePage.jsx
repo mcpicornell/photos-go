@@ -1,14 +1,22 @@
 import Bottom from "../components/Bottom";
 import Navbar from "../components/Navbar";
+import Cards from "../components/Cards";
 
 export function MyProfilePage(){
     return (
         <>
-        <Navbar/>
+       <section>
+            <Navbar />
+        </section>
 
-            <footer>
-                <Bottom />
-            </footer>
+        <section>
+        <Cards/>
+        </section>
+
+        <footer>
+        {<Bottom />}
+        </footer>
+        
         </>
     )
 }

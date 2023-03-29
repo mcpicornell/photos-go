@@ -6,13 +6,13 @@ export function Bottom(){
     return (
         <>
         
-        <FooterContainer>
-            <footer className='footerBody'>
-                    <h2>Photo Go!</h2>
+        <FooterContainer >
+            <div className='footerBody'>
+            <h2>Photo Go!</h2>
                     
                     <span>Contact</span>
-                   
-            </footer>
+
+            </div>
         </FooterContainer>
         
         </>
@@ -30,9 +30,9 @@ const FooterContainer = styled.footer`
         align-items: center;
         justify-content: space-between;
         padding: .2rem;
-        position: fixed;
         z-index: 5;
         height: 90px;
+      
 
     }
     h2{

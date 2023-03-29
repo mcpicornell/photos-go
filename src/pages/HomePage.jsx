@@ -14,7 +14,7 @@ export function HomePage(){
         </section>
 
         <footer>
-        {/* <Bottom /> */}
+        {<Bottom />}
         </footer>
         
         </>
