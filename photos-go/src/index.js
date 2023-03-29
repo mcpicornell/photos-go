@@ -2,22 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { HomePage } from '../src/pages/HomePage';
-import MyProfilePage from '../src/pages/MyProfilePage'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Provider } from 'react-redux';
+import Navbar from './components/Navbar';
+import { HomePage } from '../photos-go/pages/HomePage';
+import MyProfilePage from '../photos-go/pages/MyProfilePage'
+// import Bottom from './components/Bottom';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/myProfile" element={<MyProfilePage />} />
         </Routes>
       </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 

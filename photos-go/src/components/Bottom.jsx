@@ -2,30 +2,26 @@ import React from 'react';
 import styled from 'styled-components'
 
 
-export function Navbar(){
+export function Bottom(){
     return (
         <>
-            <NavContainer>
-                <div className='navBody'>
+            <FooterContainer>
+                <div className='footerBody'>
                     <h2>Photo Go!</h2>
-                    <div>
-                        <input placeholder='Search...' className='navSearcher'></input>
-                    </div>
-                    <div>
-                        <a href='/'>Home</a>
-                        <a href='/myProfile'>MyProfile</a>
-                    </div>                    
+                    
+                    <span>Contact</span>
+                   
                 </div>
-            </NavContainer>
+            </FooterContainer>
         </>
     )
 };
 
-export default Navbar;
+export default Bottom;
 
 
-const NavContainer = styled.div`
-    .navBody{
+const FooterContainer = styled.footer`
+    .footerBody{
         width: 100%;
         background-color: rgba(90, 114, 98, 1);
         display: flex;
@@ -48,19 +44,7 @@ const NavContainer = styled.div`
         padding-right: 10px;
         width: 50px;
     }
-
-    .navSearcher{
-        background: #FEF4F4;
-        border: 1px solid #000000;
-        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 40px;
-        margin: 15px;
-        width: 400px;
-        height: 30px;
-
-    }
-
-    a{
+    span{
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 400;

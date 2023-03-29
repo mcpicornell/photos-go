@@ -12,7 +12,7 @@ export function Navbar(){
                         <input placeholder='Search...' className='navSearcher'></input>
                     </div>
                     <div>
-                        <a href='/'>Home</a>
+                        <a href='/home'>Home</a>
                         <a href='/myProfile'>MyProfile</a>
                     </div>                    
                 </div>
