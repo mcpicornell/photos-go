@@ -3,13 +3,13 @@ import Navbar from "../components/Navbar";
 
 export function MyProfilePage(){
     return (
-        <Navbar></Navbar>,
+        <>
+        <Navbar/>
 
-        <footer>
-            <Bottom></Bottom>
-        </footer>
-
-        
+            <footer>
+                <Bottom />
+            </footer>
+        </>
     )
 }
 

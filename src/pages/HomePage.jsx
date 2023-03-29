@@ -1,8 +1,24 @@
 import Navbar from "../components/Navbar";
+import Cards from "../components/Cards";
+import Bottom from "../components/Bottom";
 
 export function HomePage(){
     return (
-        <Navbar></Navbar>
+        <>
+        <section>
+            <Navbar />
+        </section>
+
+        <section>
+        <Cards/>
+        </section>
+
+        <footer>
+        {/* <Bottom /> */}
+        </footer>
+        
+        </>
+        
     )
 
 }
