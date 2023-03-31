@@ -4,34 +4,37 @@ import Bottom from "../components/Bottom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRandomPhoto } from "../features/apiCall";
-
+import {
+  getAllCardPhoto,
+  getCardPhotoError,
+  getCardPhotoStatus
+} from "../features/CardPhotoSlice";
 
 
 export const HomePage = (props) =>{
-    console.log(getRandomPhoto())
     const dispatch = useDispatch();
-    const statePhotos = useSelector(state => state.photos);
-
-    
+    const cardPhotoData = useSelector(getAllCardPhoto);
+    const cardPhotoStatus = useSelector(getCardPhotoStatus)
+    const cardPhotoError = useSelector(getCardPhotoError);
 
     useEffect(() => {
-        if (statePhotos.state === "idle") {
+        if (cardPhotoStatus === "idle") {
           dispatch(getRandomPhoto());
         }
         
-      }, [statePhotos.state], dispatch);
+      }, [cardPhotoStatus], dispatch);
 
       let content;
-      if (statePhotos.state === "loading") {
+      if (cardPhotoStatus === "loading") {
         content = "Loading";
-      } else if (statePhotos.state === "fulfilled") {
+      } else if (cardPhotoStatus === "fulfilled") {
         
-        if (statePhotos.data !== undefined) {
+        if (cardPhotoStatus !== undefined) {
           content = [];
-          statePhotos.data[0].forEach((photo) => { 
+          cardPhotoData.forEach((photo) => { 
             content.push(
               <>
-                <Card props={photo}/>
+                <Card props={content}/>
               </>
             );
           });
@@ -39,7 +42,7 @@ export const HomePage = (props) =>{
       } else {
         content = "Error";
       }
-
+      console.log(content)
 
     return (
         <>
