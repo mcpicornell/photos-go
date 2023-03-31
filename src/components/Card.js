@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 // const imgMinusSolid = ("../img/minus-solid.svg");
 // const imgPlusSolid = ("C:/Users7mcpic/OneDrive/Documentos/OxygenAcademy/Repositiorios/RepositoriosGitHubMarc/photos-go/src/img/plus-solid.svg");
 
-export function Card(content){
+export function Card(props){
 
     // useSelector((state) => {return state.photo.url})
     
@@ -17,7 +17,7 @@ export function Card(content){
         <CardContainer >
         
         <div className="card">
-            <img className='imgAPI' src={content.urls.regular} alt=""/>
+            <img className='imgAPI' src={props.photo.urls.regular} alt=""/>
 
 
             <div className='cardButtonsContainer'>

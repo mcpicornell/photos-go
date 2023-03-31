@@ -8,25 +8,26 @@ export const CardPhotoSlice = createSlice({
   initialState: {
     error: null,
     status: "idle",
-    data: [],
+    data: []
   },
   reducers: {},
-  extraReducers(builder) {
+  extraReducers: (builder) => {
     builder.addCase(getRandomPhoto.fulfilled, (state, action) => {
         state.status = "fulfilled";
-        state.data.push(action.payload);
+        console.log(5616514);
+        state.data = (action.payload);
       })
-    builder.addCase(getRandomPhoto.rejected, (state, action) => {
+    .addCase(getRandomPhoto.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message;
+        state.error = action.payload;
       })
-    builder.addCase(getRandomPhoto.pending, (state, action) => {
+    .addCase(getRandomPhoto.pending, (state, action) => {
         state.status = "loading";
       });
   },
 });
 
 export const getAllCardPhoto = (state) => state.cardPhoto.data;
-export const getCardPhotoError = (state) => state.cardPhoto.error;
+export const getCardPhotoError = (state) => state.error;
 export const getCardPhotoStatus = (state) => state.cardPhoto.status;
 

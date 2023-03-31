@@ -16,25 +16,29 @@ export const HomePage = (props) =>{
     const cardPhotoData = useSelector(getAllCardPhoto);
     const cardPhotoStatus = useSelector(getCardPhotoStatus)
     const cardPhotoError = useSelector(getCardPhotoError);
+    // console.log(cardPhotoStatus)
 
     useEffect(() => {
-        if (cardPhotoStatus === "idle") {
+         if (cardPhotoStatus === "idle") {
           dispatch(getRandomPhoto());
-        }
-        
+
+         }
       }, [cardPhotoStatus], dispatch);
+      console.log(cardPhotoData)
 
       let content;
       if (cardPhotoStatus === "loading") {
         content = "Loading";
       } else if (cardPhotoStatus === "fulfilled") {
         
-        if (cardPhotoStatus !== undefined) {
+        if (cardPhotoData !== undefined) {
           content = [];
+          console.log(cardPhotoData)
+
           cardPhotoData.forEach((photo) => { 
             content.push(
               <>
-                <Card props={content}/>
+                <Card photo={photo}/>
               </>
             );
           });
@@ -42,7 +46,7 @@ export const HomePage = (props) =>{
       } else {
         content = "Error";
       }
-      console.log(content)
+      console.log(cardPhotoError)
 
     return (
         <>
