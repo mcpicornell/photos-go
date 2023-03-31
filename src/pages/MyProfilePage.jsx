@@ -10,11 +10,11 @@ export function MyProfilePage(){
         </section>
 
         <section>
-        <Cards/>
+            <Cards/>
         </section>
 
         <footer>
-        {<Bottom />}
+            <Bottom />
         </footer>
         
         </>

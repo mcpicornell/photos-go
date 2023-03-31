@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import imgSearcher from '../img/magnifying-glass-solid.svg'
 
 
 export function Navbar(){
@@ -8,8 +9,12 @@ export function Navbar(){
             <NavContainer>
                 <div className='navBody'>
                     <h2>Photo Go!</h2>
-                    <div>
+                    <div className='searcherContainer'>
                         <input placeholder='Search...' className='navSearcher'></input>
+                        <div className='searcherImgContainer'>
+                            <img className='searcherImg' src={imgSearcher}/>
+                        </div>
+                        
                     </div>
                     <div>
                         <a href='/'>Home</a>
@@ -49,6 +54,10 @@ const NavContainer = styled.div`
         width: 50px;
     }
 
+    .searcherImgContainer{
+        position: relative;
+    }
+
     .navSearcher{
         background: #FEF4F4;
         border: 1px solid #000000;
@@ -57,7 +66,17 @@ const NavContainer = styled.div`
         margin: 15px;
         width: 400px;
         height: 30px;
+        position: relative;
+    
 
+    }
+
+    .searcherImg{
+        position: absolute;
+        height: 10px;
+        width: 10px;
+        right: 30px;
+        bottom: 25px;
     }
 
     a{

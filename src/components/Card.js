@@ -2,18 +2,21 @@ import imgMinusSolid from '../img/minus-solid.svg'
 import imgPlusSolid from '../img/plus-solid.svg'
 import imgLogo from "../img/logo.png"
 import styled from 'styled-components'
+import React, { useState } from 'react';
 
 
 // const imgMinusSolid = ("../img/minus-solid.svg");
 // const imgPlusSolid = ("C:/Users7mcpic/OneDrive/Documentos/OxygenAcademy/Repositiorios/RepositoriosGitHubMarc/photos-go/src/img/plus-solid.svg");
 
-export function Card(){
+export function Card(props){
+
+    
     return (
         <>
         <CardContainer>
         
         <div className="card">
-        <img className='imgAPI' src={imgLogo} alt=""/>
+        <img className='imgAPI' src={props.content.urls.regular} alt=""/>
 
 
             <div className='cardButtonsContainer'>
@@ -43,13 +46,19 @@ const CardContainer = styled.div`
         background-color: white;
         display: flex;
         position: relative;
-        padding: 10px;
+        
         justify-content: space-around;
         flex-direction: column;
         align-items: center;
-        border: 5px solid black;
+        border: 0.5px solid black;
         height: 300px;
         width: 300px;
+        background-color: #fff;
+        border-radius: 0.5rem;
+        box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgba(0, 0, 0, 0.45);
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 0.5rem;
       
 
     }
@@ -57,7 +66,7 @@ const CardContainer = styled.div`
     .imgAPI{
         height: 250px;
         width: 300px;
-        border: 5px solid black;
+        border: 0.5px solid black;
     }
 
     .cardButtonsContainer{
@@ -85,7 +94,7 @@ const CardContainer = styled.div`
     }
     .buttonsImg{
         height: 50px;
-        width: 50px;
+        width: 15px;
 
     }
 `
