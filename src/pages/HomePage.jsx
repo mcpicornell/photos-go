@@ -8,25 +8,27 @@ import { getRandomPhoto } from "../features/apiCall";
 
 
 export const HomePage = (props) =>{
+    console.log(getRandomPhoto())
     const dispatch = useDispatch();
-    const photosState = useSelector(state => state.photos);
+    const statePhotos = useSelector(state => state.photos);
 
     
 
     useEffect(() => {
-        if (photosState.status === "idle") {
+        if (statePhotos.state === "idle") {
           dispatch(getRandomPhoto());
         }
-      }, [photosState.status], dispatch);
+        
+      }, [statePhotos.state], dispatch);
 
       let content;
-      if (photosState.status === "loading") {
+      if (statePhotos.state === "loading") {
         content = "Loading";
-      } else if (photosState.status === "fulfilled") {
+      } else if (statePhotos.state === "fulfilled") {
         
-        if (photosState.data !== undefined) {
+        if (statePhotos.data !== undefined) {
           content = [];
-          photosState.data[0].forEach((photo) => { 
+          statePhotos.data[0].forEach((photo) => { 
             content.push(
               <>
                 <Card props={photo}/>

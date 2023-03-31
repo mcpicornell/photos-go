@@ -1,6 +1,6 @@
 import Bottom from "../components/Bottom";
 import Navbar from "../components/Navbar";
-import Cards from "../components/Cards";
+import Card from "../components/Card";
 
 export function MyProfilePage(){
     return (
@@ -10,7 +10,7 @@ export function MyProfilePage(){
         </section>
 
         <section>
-            <Cards/>
+            <Card/>
         </section>
 
         <footer>
