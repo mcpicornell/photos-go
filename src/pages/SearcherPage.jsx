@@ -3,15 +3,23 @@ import Card from "../components/Card";
 import Bottom from "../components/Bottom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRandomPhoto } from "../features/apiCall";
+import { searcherPhoto } from "../features/apiCall";
 import {
   getAllCardPhoto,
   getCardPhotoError,
   getCardPhotoStatus
-} from "../features/CardPhotoRandomSlice";
+} from "../features/CardPhotoSearcherSlice";
 
+// export const getInputValue = (event) =>{
 
-export const HomePage = (props) =>{
+// export const inputSearcherValue = (event) => {
+//     let inputSearcherValue = document.getElementById('inputValue').value;
+//     return inputSearcherValue;
+// }
+
+// }
+
+export const SearcherPage = (props) =>{
     const dispatch = useDispatch();
     const cardPhotoData = useSelector(getAllCardPhoto);
     const cardPhotoStatus = useSelector(getCardPhotoStatus)
@@ -20,7 +28,7 @@ export const HomePage = (props) =>{
 
     useEffect(() => {
          if (cardPhotoStatus === "idle") {
-          dispatch(getRandomPhoto());
+          dispatch(searcherPhoto());
 
          }
       }, [cardPhotoStatus], dispatch);
@@ -70,4 +78,4 @@ export const HomePage = (props) =>{
 
 }
 
-export default HomePage;
+export default SearcherPage;

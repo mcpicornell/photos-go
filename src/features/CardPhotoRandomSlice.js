@@ -1,9 +1,7 @@
-import { getRandomPhoto } from "./apiCall";
+import { getRandomPhoto} from "./apiCall";
 import {createSlice} from '@reduxjs/toolkit';
 
-//EDITAR
-
-export const CardPhotoSlice = createSlice({
+export const CardPhotoRandomSlice = createSlice({
   name: "cardPhoto",
   initialState: {
     error: null,
@@ -14,7 +12,6 @@ export const CardPhotoSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getRandomPhoto.fulfilled, (state, action) => {
         state.status = "fulfilled";
-        console.log(5616514);
         state.data = (action.payload);
       })
     .addCase(getRandomPhoto.rejected, (state, action) => {

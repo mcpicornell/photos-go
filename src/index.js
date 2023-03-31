@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { HomePage } from '../src/pages/HomePage';
-import MyProfilePage from '../src/pages/MyProfilePage'
+import { MyProfilePage } from '../src/pages/MyProfilePage';
+import {SearcherPage} from '../src/pages/SearcherPage'
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './app/store';
@@ -17,6 +19,7 @@ root.render(
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/myProfile" element={<MyProfilePage />} />
+          <Route path="/searcher" element={<SearcherPage />} />
         </Routes>
       </BrowserRouter>
       </Provider>

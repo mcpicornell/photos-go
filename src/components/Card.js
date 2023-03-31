@@ -1,6 +1,5 @@
 import imgMinusSolid from '../img/minus-solid.svg'
 import imgPlusSolid from '../img/plus-solid.svg'
-import imgLogo from "../img/logo.png"
 import styled from 'styled-components'
 import React, { useState } from 'react';
 
@@ -10,7 +9,6 @@ import React, { useState } from 'react';
 
 export function Card(props){
 
-    // useSelector((state) => {return state.photo.url})
     
     return (
         <>

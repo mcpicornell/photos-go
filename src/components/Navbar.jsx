@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import imgSearcher from '../img/magnifying-glass-solid.svg'
+// import { inputSearcherValue } from '../pages/SearcherPage';
 
 
 export function Navbar(){
@@ -10,9 +11,15 @@ export function Navbar(){
                 <div className='navBody'>
                     <h2>Photo Go!</h2>
                     <div className='searcherContainer'>
-                        <input placeholder='Search...' className='navSearcher'></input>
+                        
                         <div className='searcherImgContainer'>
-                            <img className='searcherImg' src={imgSearcher}/>
+                            <form>
+                            <input placeholder='Search...' id='inputNavValue' className='navSearcher'></input>
+                            <a href='/searcher' >
+                                <img className='searcherImg' src={imgSearcher} />
+                            </a>
+                            </form>
+                            
                         </div>
                         
                     </div>
@@ -26,7 +33,11 @@ export function Navbar(){
     )
 };
 
+
+
 export default Navbar;
+
+
 
 
 const NavContainer = styled.div`
@@ -54,8 +65,14 @@ const NavContainer = styled.div`
         width: 50px;
     }
 
+    
+
     .searcherImgContainer{
         position: relative;
+    }
+
+    #inputNavValue{
+        margin-top: 20px;
     }
 
     .navSearcher{
@@ -75,8 +92,8 @@ const NavContainer = styled.div`
         position: absolute;
         height: 10px;
         width: 10px;
-        right: 30px;
-        bottom: 25px;
+        right: 60px;
+        bottom: 28px;
     }
 
     a{

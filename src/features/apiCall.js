@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
+import { inputSearcherValue } from '../pages/SearcherPage';
 // Per-page and Total
 // The X-Per-Page and X-Total headers give the number of elements returned on each page and the total number of elements respectively.
 
@@ -14,18 +14,18 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 // <https://api.unsplash.com/photos?page=4>; rel="next"
 
 let page = 1;
-
+// let inputValue = document.getElementById('inputNavValue').value;
+// inputValue = inputValue.String();
+let inputValue='';
 
   export const getRandomPhoto = createAsyncThunk('cardPhoto/getRandomPhoto', async () => {
     try{ 
       const response = await fetch(`https://api.unsplash.com/photos/?page=${page}&per_page=9&client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
-      console.log(response)
       if (!response.ok) {
-        console.log('Estos no son los androides que estás buscando')
+        console.log('Estos no son los androides que estás buscando, muy random todo')
       }
       else{
         const dataJson = await response.json();
-        console.log('dataJson')
         return dataJson ;
         
       }
@@ -37,14 +37,13 @@ let page = 1;
 
   });
 
+  
 
-
-
-  export const searcherPhoto = createAsyncThunk('search/photos', async () => {
+  export const searcherPhoto = createAsyncThunk('search/photos', async (inputSearcherValue) => {
     try{ 
-      const response = await fetch(`https://api.unsplash.com/photos/?page=${page}&per_page=9?client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
+      const response = await fetch(`https://api.unsplash.com/search/photos/?page=${page}&per_page=9&query=${inputSearcherValue}&client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
       if (!response.ok) {
-        console.log('Estos no son los androides que estás buscando')
+        console.log('Estos no son los androides que estás buscando... pero en el searcher')
       }
       else{
         const dataJson = await response.json();

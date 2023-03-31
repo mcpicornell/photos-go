@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {CardPhotoSlice} from "../features/CardPhotoSlice";
+import {CardPhotoRandomSlice} from "../features/CardPhotoRandomSlice";
+import {CardPhotoSearcherSlice} from "../features/CardPhotoSearcherSlice";
+
 //EDITAR
 export const store = configureStore({
   reducer: {
-    cardPhoto: CardPhotoSlice.reducer
+    cardPhoto: CardPhotoRandomSlice.reducer,
+    search: CardPhotoSearcherSlice.reducer
   },
 });
