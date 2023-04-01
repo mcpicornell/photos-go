@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components'
 import imgSearcher from '../img/magnifying-glass-solid.svg'
 import { useDispatch } from 'react-redux';
-import {setSearch, removePhotos} from '../features/CardPhotoSearcherSlice'
+import {setPhotos, removePhotos} from '../features/PhotoSlice';
 import { useNavigate } from 'react-router-dom';
 
 // import { inputSearcherValue } from '../pages/SearcherPage';
 // import { searchForValue } from '../features/apiCall';
 
 
-export function Navbar(){
+export const Navbar = (props) => {
 
     const nav = useNavigate();
     const dispatch = useDispatch();
@@ -18,12 +18,11 @@ export function Navbar(){
         e.preventDefault();
         const inputValue = document.getElementById('inputNavValue').value;
         const inputValueRefactor = inputValue.replace(/\s+/g, "-");
-       
         dispatch(removePhotos());
-        dispatch(setSearch(inputValueRefactor));
-        
+       console.log(inputValueRefactor)
+        dispatch(setPhotos(inputValueRefactor));
+   
         nav('/searcher');
-
     }
 
 
@@ -37,9 +36,7 @@ export function Navbar(){
                         <div className='searcherImgContainer'>
                             <form onSubmit={onSubmitHandler}>
                             <input placeholder='Search...' id='inputNavValue' className='navSearcher'></input>
-                            {/* <input type='submit' >
-                                
-                            </input> */}
+                            
                             <button type='submit'><img className='searcherImg' src={imgSearcher} />
                             </button>
                             </form>

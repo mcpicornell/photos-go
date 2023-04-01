@@ -3,47 +3,42 @@ import Card from "../components/Card";
 import Bottom from "../components/Bottom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { searcherPhoto } from "../features/apiCall";
-import {
-  getAllCardPhoto,
-  getCardPhotoError,
-  getCardPhotoStatus,
-  getSearchPhoto
-} from "../features/CardPhotoSearcherSlice";
+import { getPhoto } from "../features/apiCall";
+import { getAllPhoto, getPhotoError, getPhotoStatus, getSearchedPhoto} from "../features/PhotoSlice";
 
 
 
 export const SearcherPage = (props) =>{
     const dispatch = useDispatch();
-    let cardPhotoData = useSelector(getAllCardPhoto);
-    const cardPhotoStatus = useSelector(getCardPhotoStatus)
-    const cardPhotoError = useSelector(getCardPhotoError);
-    const cardPhotoObj = useSelector(getSearchPhoto);
+    let photoData = useSelector(getAllPhoto);
+    const photoStatus = useSelector(getPhotoStatus)
+    const photoError = useSelector(getPhotoError);
+    const searchedPhoto = useSelector(getSearchedPhoto);
 
-    console.log(cardPhotoObj);
     
 
     useEffect(() => {
-         if (cardPhotoStatus === "idle") {
-          dispatch(searcherPhoto(cardPhotoObj));
-
-         }
-      }, [cardPhotoObj, dispatch, cardPhotoStatus]);
+        if (photoStatus === "idle") {
+            dispatch(getPhoto(searchedPhoto));
+          }  
+      }, [searchedPhoto, dispatch, photoStatus]);
 
       let content;
-      if (cardPhotoStatus === "loading") {
-        console.log(cardPhotoStatus);
-      } else if (cardPhotoStatus === "fulfilled") {
+      if (photoStatus === "loading") {
+        console.log(photoStatus);
+        } 
+
+        else if (photoStatus === "fulfilled") {
         
-        if (cardPhotoData !== undefined) {
+        if (photoData !== undefined) {
           content = [];
-
-          if (!(Array.isArray(cardPhotoData))){
-
-            cardPhotoData = cardPhotoData.results;
+            
+          if (!(Array.isArray(photoData))){
+            
+            photoData = photoData.results;
           }
           
-            cardPhotoData.forEach((photo) => { 
+          photoData.forEach((photo) => { 
               content.push(
                 <>
                   <Card photo={photo}/>
@@ -53,8 +48,7 @@ export const SearcherPage = (props) =>{
             });
         }
       } else {
-
-        console.log(cardPhotoError);
+        console.log(photoError)
       }
       
     return (
@@ -70,7 +64,7 @@ export const SearcherPage = (props) =>{
         </section>
 
         <footer>
-            {<Bottom />}
+            <Bottom />
         </footer>
         
         </>

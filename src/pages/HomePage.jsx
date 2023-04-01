@@ -3,43 +3,39 @@ import Card from "../components/Card";
 import Bottom from "../components/Bottom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRandomPhoto } from "../features/apiCall";
-import {
-  getAllCardPhoto,
-  getCardPhotoError,
-  getCardPhotoStatus
-} from "../features/CardPhotoRandomSlice";
+import { getPhoto } from "../features/apiCall";
+import { getAllPhoto, getPhotoError, getPhotoStatus, getSearchedPhoto} from "../features/PhotoSlice";
 
 
 export const HomePage = (props) =>{
     const dispatch = useDispatch();
-    let cardPhotoData = useSelector(getAllCardPhoto);
-    const cardPhotoStatus = useSelector(getCardPhotoStatus)
-    const cardPhotoError = useSelector(getCardPhotoError);
+    let photoData = useSelector(getAllPhoto);
+    const photoStatus = useSelector(getPhotoStatus)
+    const photoError = useSelector(getPhotoError);
+    const searchedPhoto = useSelector(getSearchedPhoto);
     
 
     useEffect(() => {
-         if (cardPhotoStatus === "idle") {
-          dispatch(getRandomPhoto());
+         if (photoStatus === "idle") {
+          dispatch(getPhoto());
 
          }
-      }, [cardPhotoStatus], dispatch);
+      }, [photoStatus], dispatch);
       
 
       let content;
-      if (cardPhotoStatus === "loading") {
+      if (photoStatus === "loading") {
         content = "Loading";
-      } else if (cardPhotoStatus === "fulfilled") {
+      } else if (photoStatus === "fulfilled") {
         
-        if (cardPhotoData !== undefined) {
+        if (photoData !== undefined) {
           content = [];
-          console.log(cardPhotoData)
-          if (!(Array.isArray(cardPhotoData))){
+          if (!(Array.isArray(photoData))){
 
-            cardPhotoData = cardPhotoData.results;
+            photoData = photoData.results;
           }
           
-            cardPhotoData.forEach((photo) => { 
+          photoData.forEach((photo) => { 
               content.push(
                 <>
                   <Card photo={photo}/>
@@ -50,7 +46,7 @@ export const HomePage = (props) =>{
           
         }
       } else {
-        console.log(cardPhotoError);
+        console.log(photoError);
       }
       
 
@@ -60,10 +56,8 @@ export const HomePage = (props) =>{
             <Navbar />
         </section>
 
-        <section className='cardsContainer'>
-        
-            {content}
-            
+        <section className='cardsContainer'>       
+            {content}        
         </section>
 
         <footer>

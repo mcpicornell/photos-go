@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, isAsyncThunkAction } from "@reduxjs/toolkit";
 // import { inputSearcherValue } from '../pages/SearcherPage';
 // Per-page and Total
 // The X-Per-Page and X-Total headers give the number of elements returned on each page and the total number of elements respectively.
@@ -23,9 +23,9 @@ let page = 1;
         console.log('Estos no son los androides que estás buscando, muy random todo')
       }
       else{
+        
         const dataJson = await response.json();
         return dataJson ;
-        
       }
       
     }
@@ -40,14 +40,12 @@ let page = 1;
   export const searcherPhoto = createAsyncThunk('search/photos', async (searchedPhoto) => {
     try{ 
       const response = await fetch(`https://api.unsplash.com/search/photos/?page=${page}&per_page=9&query=${searchedPhoto}&client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
-      console.log(searchedPhoto);
 
       if (!response.ok) {
         console.log('Estos no son los androides que estás buscando... pero en el searcher')
       }
       else{
         const dataJson = await response.json();
-        console.log(dataJson);
         return dataJson;
       }
       
@@ -57,6 +55,54 @@ let page = 1;
     }
 
   });
+
+  export const getPhoto = createAsyncThunk('photo/getPhoto', async (searchedPhoto) =>{
+    console.log('soy el primero')
+    console.log(searchedPhoto)
+    if (searchedPhoto === '')
+
+    {
+      console.log('soy el segundo')
+
+      try{ 
+        const response = await fetch(`https://api.unsplash.com/photos/random/?count=9&client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
+        
+        if (!response.ok) 
+        {
+          console.log('Estos no son los androides que estás buscando, muy random todo')
+        }
+
+        else{
+          const dataJson = await response.json();
+          return dataJson ;
+        }
+      
+    }
+    catch (error){
+      console.log(error);
+    }
+
+    }
+    else{
+
+      try{ 
+        const response = await fetch(`https://api.unsplash.com/search/photos/?page=${page}&per_page=9&query=${searchedPhoto}&client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
+  
+      if (!response.ok) {
+        console.log('Estos no son los androides que estás buscando... pero en el searcher')
+      }
+      else{
+        const dataJson = await response.json();
+        return dataJson;
+      }
+        
+      }
+      catch (error){
+        console.log(error);
+      }
+
+    }
+    });
 
 
     

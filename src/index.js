@@ -4,7 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { HomePage } from '../src/pages/HomePage';
 import { MyProfilePage } from '../src/pages/MyProfilePage';
-import {SearcherPage} from '../src/pages/SearcherPage'
+import {SearcherPage} from '../src/pages/SearcherPage';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
