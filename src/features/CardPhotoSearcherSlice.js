@@ -10,13 +10,15 @@ export const CardPhotoSearcherSlice = createSlice({
       data: []
     },
     reducers: {
-      setSearch(state, action){
+      setSearch: (state, action) => {
         state.searchedPhoto = action.payload;
+        
       },
-      removePhotos(state, action){
-        state.searchedPhoto = '';
+      removePhotos: (state) => {
         state.status = 'idle';
+        state.searchedPhoto = "";
         state.data = [];
+        
       }
     },
     extraReducers: (builder) => {

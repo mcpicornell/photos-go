@@ -13,7 +13,7 @@ import {
 
 export const HomePage = (props) =>{
     const dispatch = useDispatch();
-    const cardPhotoData = useSelector(getAllCardPhoto);
+    let cardPhotoData = useSelector(getAllCardPhoto);
     const cardPhotoStatus = useSelector(getCardPhotoStatus)
     const cardPhotoError = useSelector(getCardPhotoError);
     
@@ -33,15 +33,21 @@ export const HomePage = (props) =>{
         
         if (cardPhotoData !== undefined) {
           content = [];
-          
+          console.log(cardPhotoData)
+          if (!(Array.isArray(cardPhotoData))){
 
-          cardPhotoData.forEach((photo) => { 
-            content.push(
-              <>
-                <Card photo={photo}/>
-              </>
-            );
-          });
+            cardPhotoData = cardPhotoData.results;
+          }
+          
+            cardPhotoData.forEach((photo) => { 
+              content.push(
+                <>
+                  <Card photo={photo}/>
+                </>
+              );
+              
+            });
+          
         }
       } else {
         console.log(cardPhotoError);

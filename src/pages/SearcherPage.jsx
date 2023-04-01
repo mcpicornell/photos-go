@@ -25,7 +25,7 @@ export const SearcherPage = (props) =>{
 
     useEffect(() => {
          if (cardPhotoStatus === "idle") {
-          dispatch(searcherPhoto({cardPhotoObj}));
+          dispatch(searcherPhoto(cardPhotoObj));
 
          }
       }, [cardPhotoObj, dispatch, cardPhotoStatus]);
@@ -49,17 +49,14 @@ export const SearcherPage = (props) =>{
                   <Card photo={photo}/>
                 </>
               );
+              
             });
-
-      
-          
         }
       } else {
 
         console.log(cardPhotoError);
       }
       
-
     return (
         <>
         <section>

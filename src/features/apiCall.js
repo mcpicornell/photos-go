@@ -18,7 +18,7 @@ let page = 1;
 
   export const getRandomPhoto = createAsyncThunk('cardPhoto/getRandomPhoto', async () => {
     try{ 
-      const response = await fetch(`https://api.unsplash.com/photos/?page=${page}&per_page=9&client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
+      const response = await fetch(`https://api.unsplash.com/photos/random/?count=9&client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
       if (!response.ok) {
         console.log('Estos no son los androides que estás buscando, muy random todo')
       }
@@ -37,14 +37,17 @@ let page = 1;
 
   
 
-  export const searcherPhoto = createAsyncThunk('search/photos', async ({searchedPhoto}) => {
+  export const searcherPhoto = createAsyncThunk('search/photos', async (searchedPhoto) => {
     try{ 
       const response = await fetch(`https://api.unsplash.com/search/photos/?page=${page}&per_page=9&query=${searchedPhoto}&client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
+      console.log(searchedPhoto);
+
       if (!response.ok) {
         console.log('Estos no son los androides que estás buscando... pero en el searcher')
       }
       else{
         const dataJson = await response.json();
+        console.log(dataJson);
         return dataJson;
       }
       
@@ -55,15 +58,5 @@ let page = 1;
 
   });
 
-//   let inputValue = document.getElementById("inputValue");
 
-//   export const searchForValue = inputValue.addEventListener("click",async (event) => {
-//     event.preventDefault();
-    
-//     let inputValue = inputValue.value;
-//     inputValue = inputValue.toString();
-//     inputValue = inputValue.toLowerCase();
-    
-//     searcherPhoto();
-// });
     
