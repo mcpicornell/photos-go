@@ -24,7 +24,7 @@ export const HomePage = (props) =>{
 
          }
       }, [cardPhotoStatus], dispatch);
-      console.log(cardPhotoData)
+      
 
       let content;
       if (cardPhotoStatus === "loading") {
@@ -33,7 +33,7 @@ export const HomePage = (props) =>{
         
         if (cardPhotoData !== undefined) {
           content = [];
-          console.log(cardPhotoData)
+          
 
           cardPhotoData.forEach((photo) => { 
             content.push(

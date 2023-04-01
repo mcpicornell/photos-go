@@ -6,13 +6,22 @@ export const CardPhotoSearcherSlice = createSlice({
     initialState: {
       error: null,
       status: "idle",
+      searchedPhoto: "",
       data: []
     },
-    reducers: {},
+    reducers: {
+      setSearch(state, action){
+        state.searchedPhoto = action.payload;
+      },
+      removePhotos(state, action){
+        state.searchedPhoto = '';
+        state.status = 'idle';
+        state.data = [];
+      }
+    },
     extraReducers: (builder) => {
       builder.addCase(searcherPhoto.fulfilled, (state, action) => {
           state.status = "fulfilled";
-          console.log(5616514);
           state.data = (action.payload);
         })
       .addCase(searcherPhoto.rejected, (state, action) => {
@@ -25,6 +34,10 @@ export const CardPhotoSearcherSlice = createSlice({
     },
   });
   
-  export const getAllCardPhoto = (state) => state.cardPhoto.data;
+  export const getAllCardPhoto = (state) => state.search.data;
   export const getCardPhotoError = (state) => state.error;
-  export const getCardPhotoStatus = (state) => state.cardPhoto.status;
+  export const getCardPhotoStatus = (state) => state.search.status;
+  export const getSearchPhoto = (state) => state.search.searchedPhoto;
+
+
+  export const {setSearch, removePhotos} = CardPhotoSearcherSlice.actions;

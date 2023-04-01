@@ -7,51 +7,55 @@ import { searcherPhoto } from "../features/apiCall";
 import {
   getAllCardPhoto,
   getCardPhotoError,
-  getCardPhotoStatus
+  getCardPhotoStatus,
+  getSearchPhoto
 } from "../features/CardPhotoSearcherSlice";
 
-// export const getInputValue = (event) =>{
 
-// export const inputSearcherValue = (event) => {
-//     let inputSearcherValue = document.getElementById('inputValue').value;
-//     return inputSearcherValue;
-// }
-
-// }
 
 export const SearcherPage = (props) =>{
     const dispatch = useDispatch();
-    const cardPhotoData = useSelector(getAllCardPhoto);
+    let cardPhotoData = useSelector(getAllCardPhoto);
     const cardPhotoStatus = useSelector(getCardPhotoStatus)
     const cardPhotoError = useSelector(getCardPhotoError);
+    const cardPhotoObj = useSelector(getSearchPhoto);
+
+    console.log(cardPhotoObj);
     
 
     useEffect(() => {
          if (cardPhotoStatus === "idle") {
-          dispatch(searcherPhoto());
+          dispatch(searcherPhoto({cardPhotoObj}));
 
          }
-      }, [cardPhotoStatus], dispatch);
-      console.log(cardPhotoData)
+      }, [cardPhotoObj, dispatch, cardPhotoStatus]);
 
       let content;
       if (cardPhotoStatus === "loading") {
-        content = "Loading";
+        console.log(cardPhotoStatus);
       } else if (cardPhotoStatus === "fulfilled") {
         
         if (cardPhotoData !== undefined) {
           content = [];
-          console.log(cardPhotoData)
 
-          cardPhotoData.forEach((photo) => { 
-            content.push(
-              <>
-                <Card photo={photo}/>
-              </>
-            );
-          });
+          if (!(Array.isArray(cardPhotoData))){
+
+            cardPhotoData = cardPhotoData.results;
+          }
+          
+            cardPhotoData.forEach((photo) => { 
+              content.push(
+                <>
+                  <Card photo={photo}/>
+                </>
+              );
+            });
+
+      
+          
         }
       } else {
+
         console.log(cardPhotoError);
       }
       
@@ -69,7 +73,7 @@ export const SearcherPage = (props) =>{
         </section>
 
         <footer>
-        {<Bottom />}
+            {<Bottom />}
         </footer>
         
         </>
