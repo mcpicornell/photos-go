@@ -1,7 +1,7 @@
 import Bottom from "../components/Bottom";
 import Navbar from "../components/Navbar";
-import Card from "../components/Card";
-
+import imgSearcher from '../img/magnifying-glass-solid.svg'
+ 
 export function MyProfilePage(){
     return (
         <>
@@ -10,7 +10,17 @@ export function MyProfilePage(){
         </section>
 
         <section>
-            <Card/>
+        <form>
+            <h2>My Photos</h2>
+            
+            <input placeholder='Search your photo' id='inputNavValue' className='navSearcher'></input>
+                            
+            <button type='submit'>
+                <img className='searcherImg' src={imgSearcher} />
+            </button>
+            </form>
+                            
+                        
         </section>
 
         <footer>

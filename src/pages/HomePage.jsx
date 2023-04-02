@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhoto } from "../features/apiCall";
 import { getAllPhoto, getPhotoError, getPhotoStatus, getSearchedPhoto} from "../features/PhotoSlice";
-
+import {Modal} from '../components/Modal';
 
 export const HomePage = (props) =>{
     const dispatch = useDispatch();
@@ -36,9 +36,20 @@ export const HomePage = (props) =>{
           }
           
           photoData.forEach((photo) => { 
+            const savedPhoto = 
+            {
+              id: photo.id,
+              description: photo.description,
+              width: photo.width,
+              height: photo.height,
+              likes: photo.likes,
+              urls: photo.urls,
+              dateAdded: '',
+              tags: photo.tags
+            }
               content.push(
                 <>
-                  <Card photo={photo}/>
+                  <Card photo={savedPhoto}/>
                 </>
               );
               
@@ -59,6 +70,8 @@ export const HomePage = (props) =>{
         <section className='cardsContainer'>       
             {content}        
         </section>
+
+        
 
         <footer>
         {<Bottom />}

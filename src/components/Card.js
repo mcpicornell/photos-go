@@ -1,7 +1,9 @@
 import imgMinusSolid from '../img/minus-solid.svg'
 import imgPlusSolid from '../img/plus-solid.svg'
+import imgCrossSolid from '../img/xmark-solid.svg'
 import styled from 'styled-components'
-import React, { useState } from 'react';
+import React from 'react';
+ 
 
 
 // const imgMinusSolid = ("../img/minus-solid.svg");
@@ -9,13 +11,20 @@ import React, { useState } from 'react';
 
 export function Card(props){
 
+    const showModal = () => {
+        document.getElementById('modal').showModal();
+    }
+
+    const closeModal = () => {
+        document.getElementById('modal').close();
+    }
     
     return (
         <>
         <CardContainer >
         
         <div className="card">
-            <img className='imgAPI' src={props.photo.urls.regular} alt=""/>
+            <img className='imgAPI' src={props.photo.urls.regular} onClick={showModal} alt=""/>
 
 
             <div className='cardButtonsContainer'>
@@ -29,8 +38,44 @@ export function Card(props){
                 </div>
             </div>
         </div>
-
         </CardContainer>
+
+        <dialog id='modal' >
+            <h3>Photo info</h3>
+            
+            <div>
+                <img src={imgCrossSolid} onClick={closeModal}/>
+            </div>
+            
+
+            <label>Description: </label>
+            <span>
+                {props.photo.description}
+            </span>
+
+            <label>Width: </label>
+            <span>
+                {props.photo.width}
+            </span>
+
+            <label>Height: </label>
+            <span>
+                {props.photo.height}
+            </span>
+
+
+            <label>Likes: </label>
+            <span>
+                {props.photo.likes}
+            </span>
+
+            <label>Date added: </label>
+            <span>
+                {props.photo.dateAdded}
+            </span>
+
+
+        </dialog>
         </>
         
         

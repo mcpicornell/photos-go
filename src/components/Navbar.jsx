@@ -14,8 +14,8 @@ export const Navbar = (props) => {
     const nav = useNavigate();
     const dispatch = useDispatch();
 
-    const onSubmitHandler = (e) => {
-        e.preventDefault();
+    const onSubmitHandler = (event) => {
+        event.preventDefault();
         const inputValue = document.getElementById('inputNavValue').value;
         const inputValueRefactor = inputValue.replace(/\s+/g, "-");
         dispatch(removePhotos());
@@ -126,6 +126,10 @@ const NavContainer = styled.div`
         color: rgba(252, 247, 247, 1);
         text-decoration: none;
         margin-right: 2rem;
+    }
+    button{
+        border: none;
+        background:none;
     }
 
 `

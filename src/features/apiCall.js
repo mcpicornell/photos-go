@@ -16,59 +16,14 @@ import { createAsyncThunk, isAsyncThunkAction } from "@reduxjs/toolkit";
 let page = 1;
 // let inputValue = document.getElementById('inputNavValue').value;
 
-  export const getRandomPhoto = createAsyncThunk('cardPhoto/getRandomPhoto', async () => {
-    try{ 
-      const response = await fetch(`https://api.unsplash.com/photos/random/?count=9&client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
-      if (!response.ok) {
-        console.log('Estos no son los androides que estás buscando, muy random todo')
-      }
-      else{
-        
-        const dataJson = await response.json();
-        return dataJson ;
-      }
-      
-    }
-    catch (error){
-      console.log(error);
-    }
-
-  });
-
-  
-
-  export const searcherPhoto = createAsyncThunk('search/photos', async (searchedPhoto) => {
-    try{ 
-      const response = await fetch(`https://api.unsplash.com/search/photos/?page=${page}&per_page=9&query=${searchedPhoto}&client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
-
-      if (!response.ok) {
-        console.log('Estos no son los androides que estás buscando... pero en el searcher')
-      }
-      else{
-        const dataJson = await response.json();
-        return dataJson;
-      }
-      
-    }
-    catch (error){
-      console.log(error);
-    }
-
-  });
-
   export const getPhoto = createAsyncThunk('photo/getPhoto', async (searchedPhoto) =>{
-    console.log('soy el primero')
-    console.log(searchedPhoto)
-    if (searchedPhoto === '')
-
-    {
-      console.log('soy el segundo')
+    
+    if (searchedPhoto === ''){
 
       try{ 
         const response = await fetch(`https://api.unsplash.com/photos/random/?count=9&client_id=Q1U1dgR71d2cU-1Lb65CEPhvmgUOIQ9qP2Bc2Q_DXe8`)
         
-        if (!response.ok) 
-        {
+        if (!response.ok){
           console.log('Estos no son los androides que estás buscando, muy random todo')
         }
 
@@ -76,12 +31,11 @@ let page = 1;
           const dataJson = await response.json();
           return dataJson ;
         }
-      
-    }
-    catch (error){
-      console.log(error);
-    }
+      }
 
+      catch (error){
+      console.log(error);
+      }
     }
     else{
 
@@ -91,6 +45,7 @@ let page = 1;
       if (!response.ok) {
         console.log('Estos no son los androides que estás buscando... pero en el searcher')
       }
+      
       else{
         const dataJson = await response.json();
         return dataJson;

@@ -36,12 +36,25 @@ export const SearcherPage = (props) =>{
           if (!(Array.isArray(photoData))){
             
             photoData = photoData.results;
+            console.log(photoData)
           }
           
-          photoData.forEach((photo) => { 
+          photoData.forEach((photo) => {
+            const savedPhoto = 
+            {
+              id: photo.id,
+              description: photo.description,
+              width: photo.width,
+              height: photo.height,
+              likes: photo.likes,
+              urls: photo.urls,
+              dateAdded: '',
+              tags: photo.tags
+            }
+            
               content.push(
                 <>
-                  <Card photo={photo}/>
+                  <Card photo={savedPhoto}/>
                 </>
               );
               
