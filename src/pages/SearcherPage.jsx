@@ -4,7 +4,7 @@ import Bottom from "../components/Bottom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhoto } from "../features/apiCall";
-import { getAllPhoto, getPhotoError, getPhotoStatus, getSearchedPhoto} from "../features/PhotoSlice";
+import { getAllPhoto, getPhotoError, getPhotoStatus, getSearchedPhoto} from "../features/SearchSlice";
 
 
 
@@ -47,8 +47,11 @@ export const SearcherPage = (props) =>{
               width: photo.width,
               height: photo.height,
               likes: photo.likes,
-              urls: photo.urls,
-              dateAdded: '',
+              urls: 
+              {
+                full: photo.urls.full,
+                thumb: photo.urls.thumb
+              },
               tags: photo.tags
             }
             
@@ -72,7 +75,7 @@ export const SearcherPage = (props) =>{
 
         <section className='cardsContainer'>
         
-            {content}
+            
             
         </section>
 

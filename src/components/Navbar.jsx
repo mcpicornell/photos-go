@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import imgSearcher from '../img/magnifying-glass-solid.svg'
 import { useDispatch } from 'react-redux';
-import {setPhotos, removePhotos} from '../features/PhotoSlice';
+import {setPhotos, removePhotos} from '../features/SearchSlice';
 import { useNavigate } from 'react-router-dom';
 
 // import { inputSearcherValue } from '../pages/SearcherPage';

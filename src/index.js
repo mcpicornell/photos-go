@@ -18,7 +18,7 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/myProfile" element={<MyProfilePage />} />
+          <Route path="/myProfile" element={<MyProfilePage />} /> 
           <Route path="/searcher" element={<SearcherPage />} />
         </Routes>
       </BrowserRouter>

@@ -1,7 +1,7 @@
 import { getPhoto } from "./apiCall";
 import {createSlice} from '@reduxjs/toolkit';
 
-export const PhotoSlice = createSlice({
+export const SearchSlice = createSlice({
     name: "photo",
     initialState: {
       error: null,
@@ -43,4 +43,4 @@ export const PhotoSlice = createSlice({
 
 
 
-  export const {setPhotos, removePhotos} = PhotoSlice.actions;
+  export const {setPhotos, removePhotos} = SearchSlice.actions;

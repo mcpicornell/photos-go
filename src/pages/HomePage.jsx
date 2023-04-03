@@ -4,7 +4,7 @@ import Bottom from "../components/Bottom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhoto } from "../features/apiCall";
-import { getAllPhoto, getPhotoError, getPhotoStatus, getSearchedPhoto} from "../features/PhotoSlice";
+import { getAllPhoto, getPhotoError, getPhotoStatus, getSearchedPhoto} from "../features/SearchSlice";
 import {Modal} from '../components/Modal';
 
 export const HomePage = (props) =>{
@@ -13,6 +13,9 @@ export const HomePage = (props) =>{
     const photoStatus = useSelector(getPhotoStatus)
     const photoError = useSelector(getPhotoError);
     const searchedPhoto = useSelector(getSearchedPhoto);
+
+    const propsImg = localStorage.getItem('favorites');
+    console.log(propsImg)
     
 
     useEffect(() => {
@@ -23,13 +26,13 @@ export const HomePage = (props) =>{
       }, [photoStatus], dispatch);
       
 
-      let content;
+      let content = [];
       if (photoStatus === "loading") {
         content = "Loading";
       } else if (photoStatus === "fulfilled") {
         
         if (photoData !== undefined) {
-          content = [];
+        
           if (!(Array.isArray(photoData))){
 
             photoData = photoData.results;
@@ -43,8 +46,11 @@ export const HomePage = (props) =>{
               width: photo.width,
               height: photo.height,
               likes: photo.likes,
-              urls: photo.urls,
-              dateAdded: '',
+              urls: 
+              {
+                full: photo.urls.full,
+                thumb: photo.urls.thumb
+              },
               tags: photo.tags
             }
               content.push(

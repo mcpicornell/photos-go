@@ -2,14 +2,44 @@ import imgMinusSolid from '../img/minus-solid.svg'
 import imgPlusSolid from '../img/plus-solid.svg'
 import imgCrossSolid from '../img/xmark-solid.svg'
 import styled from 'styled-components'
-import React from 'react';
- 
+import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import { getDataFavoritesPhotos, getErrorFavoritesPhotos, 
+     getIsFavoritePhoto} from "../features/FavoritesSlice";
+
+import {setFavoritesPhotos, removeFavoritesPhotos} from "../features/FavoritesSlice";
+
+import {deleteFavoritesLocalStorage, checkIfExistsFavorites, 
+    readfavoritesLocalStorage, createFavoritesInLocalStorage
+} from '../data/localStorage'
+
+
+// import { deleteFavoritesLocalStorage, 
+//     checkIfExistsFavorites, readfavoritesLocalStorage, 
+//     createfavoritesInLocalStorage} 
+//     from '..data/localStorage'
 
 // const imgMinusSolid = ("../img/minus-solid.svg");
 // const imgPlusSolid = ("C:/Users7mcpic/OneDrive/Documentos/OxygenAcademy/Repositiorios/RepositoriosGitHubMarc/photos-go/src/img/plus-solid.svg");
 
 export function Card(props){
+    const favoritesData = useSelector(getDataFavoritesPhotos)  
+    const favoritesError = useSelector(getErrorFavoritesPhotos)  
+    const favoritesPhoto = useSelector(getIsFavoritePhoto); 
+
+
+    const dispatch = useDispatch(getDataFavoritesPhotos);
+
+    const addToLocalStorage = () => {
+        dispatch(setFavoritesPhotos(props.photo));
+        createFavoritesInLocalStorage(favoritesData);
+  
+    }
+
+    const deleteLocalStorage = () => {
+        deleteFavoritesLocalStorage(props.photo);
+    }
 
     const showModal = () => {
         document.getElementById('modal').showModal();
@@ -18,23 +48,25 @@ export function Card(props){
     const closeModal = () => {
         document.getElementById('modal').close();
     }
+
+    
     
     return (
         <>
         <CardContainer >
         
         <div className="card">
-            <img className='imgAPI' src={props.photo.urls.regular} onClick={showModal} alt=""/>
+            <img className='imgAPI' src={props.photo.urls.full} onClick={showModal} alt=""/>
 
 
             <div className='cardButtonsContainer'>
 
                 <div id='addButtonContainer' className='buttonsContainer'>
-                    <img className='buttonsImg' src={imgPlusSolid} />
+                    <img className='buttonsImg' src={imgPlusSolid} onClick={addToLocalStorage} />
                 </div>
                                 
                 <div id='removeButtonContainer' className='buttonsContainer'>
-                    <img className='buttonsImg' src={imgMinusSolid} />
+                    <img className='buttonsImg' src={imgMinusSolid} onClick={deleteLocalStorage}/>
                 </div>
             </div>
         </div>
@@ -73,8 +105,6 @@ export function Card(props){
             <span>
                 {props.photo.dateAdded}
             </span>
-
-
         </dialog>
         </>
         

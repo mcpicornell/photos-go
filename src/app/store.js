@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { PhotoSlice } from "../features/PhotoSlice";
+import { SearchSlice } from "../features/SearchSlice";
+import { FavoritesSlice } from "../features/FavoritesSlice";
 
 //EDITAR
 export const store = configureStore({
   reducer: {
-    photo: PhotoSlice.reducer
+    favorite: FavoritesSlice.reducer,
+    photo: SearchSlice.reducer
   },
 });
