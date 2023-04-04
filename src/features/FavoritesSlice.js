@@ -4,6 +4,7 @@ export const FavoritesSlice = createSlice({
     name: "favorite",
     initialState: {
       error: null,
+      status: 'idle',
       isFavorite: false,
       data: {}
     },
@@ -11,11 +12,11 @@ export const FavoritesSlice = createSlice({
       setFavoritesPhotos: (state, action) => {
         state.data = action.payload;
         state.isFavorite = true;
+
       },
       removeFavoritesPhotos: (state) => {
-        state.data = [];
+        state.data = {};
         state.isFavorite = false;
-
       }
     },
   });
@@ -23,6 +24,7 @@ export const FavoritesSlice = createSlice({
   export const getDataFavoritesPhotos = (state) => state.favorite.data;
   export const getErrorFavoritesPhotos = (state) => state.error;
   export const getIsFavoritePhoto = (state) => state.favorite.isFavorite;
+  export const getFavoritePhotoStatus = (state) => state.photo.status;
 
 
 

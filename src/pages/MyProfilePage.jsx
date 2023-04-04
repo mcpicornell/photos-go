@@ -1,93 +1,93 @@
 import Bottom from "../components/Bottom";
 import Navbar from "../components/Navbar";
 import imgSearcher from '../img/magnifying-glass-solid.svg'
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import { CardFav } from "../components/CardFav";
 import { readFavoritesLocalStorage } from "../data/localStorage";
- 
-export function MyProfilePage(props){
+import { getDataFavoritesPhotos, getErrorFavoritesPhotos , getFavoritePhotoStatus, getIsFavoritePhoto } from "../features/FavoritesSlice";
+import {setFavoritesPhotos, removeFavoritesPhotos} from "../features/FavoritesSlice";
 
-  useEffect(() =>{
+export function MyProfilePage(){
+    const dispatch = useDispatch();
+    const favoriteListLocalStorage = readFavoritesLocalStorage();
 
-    let favoritesList = readFavoritesLocalStorage();
+    let dataFavoritePhoto = useSelector(getDataFavoritesPhotos);
+    const statusFavoritePhoto = useSelector(getFavoritePhotoStatus);
+    const errorFavoritePhoto = useSelector(getErrorFavoritesPhotos);
+    const isFavoritePhoto = useSelector(getIsFavoritePhoto);
 
-  console.log('Lista de favoritos')
-  console.log(favoritesList.data)
-
-    let content = [];
     let date = new Date();
-
-
-    if (favoritesList != null) {  
-      for(let i=0; i < favoritesList.data.length; i++){
-        const savedPhoto = 
-        {
-          id: favoritesList.data[i].id,
-          description: favoritesList.data[i].description,
-          width: favoritesList.data[i].width,
-          height: favoritesList.data[i].height,
-          likes: favoritesList.data[i].likes,
-          urls: 
-          {
-            full: favoritesList.data[i].urls.full,
-            thumb: favoritesList.data[i].urls.thumb
-          },
-          tags: favoritesList.data[i].tags,
-          date: date
-
-        }
-
   
-        content.push(
-    <>
-    <CardFav photo={savedPhoto} />
-    </>
-
-  );
-
-
-        }    
+  useEffect(() => {
+    if (statusFavoritePhoto === "idle") {
+     dispatch(setFavoritesPhotos(favoriteListLocalStorage));
     }
+ }, [statusFavoritePhoto], dispatch);
+ 
+ let content;
+ if (statusFavoritePhoto === "loading") {
+   content = "Loading";
+ } else if (isFavoritePhoto === true) {
 
-    favoritesList.data.forEach((element) => {
-      
-      console.log(savedPhoto)
-    });
+   
+   if (dataFavoritePhoto !== undefined) {
+   
+    //  if (!(Array.isArray(dataFavoritePhoto))){
 
-  })
+    //   dataFavoritePhoto = dataFavoritePhoto.data;
+    //  }
+     content = [];
+     const dateString = JSON.stringify(date);
+     dataFavoritePhoto.forEach((favorite) => { 
+       const savedPhoto = 
+       {
+        id: favorite.id,
+        description: favorite.description,
+        width: favorite.width,
+        height: favorite.height,
+        likes: favorite.likes,
+        //  urls: {
+        //   full: favorite.urls['full'],
+        //   thumb: favorite.urls['thumb']
+        // },
+        urlsFull: favorite.urlsFull,
+        urlsThumb: favorite.urlsThumb,
+        tags: favorite.tags,
+        // date: dateString
+       }
+         content.push(
+           <>
+             <CardFav photo={savedPhoto}/>
+           </>
+         );
+         
+       });
+     
+   }
+ } else {
+   console.log(errorFavoritePhoto);
+ }
+ 
 
-  
+return (
+   <>
+   <section>
+       <Navbar />
+   </section>
 
+   <section className='cardsContainer'>       
+       {content}        
+   </section>
 
-    return (
-      <>
-     <section>
-          <Navbar />
-      </section>
+   <footer>
+   {<Bottom />}
+   </footer>
+   </>
+   
+)
 
-      <form>
-          <h2>My Photos</h2>
-          
-          <input placeholder='Search your photo' id='inputNavValue' className='navSearcher'></input>
-
-          <button type='submit'>
-              <img className='searcherImg' src={imgSearcher} />
-          </button>
-      </form>
-      
-      <section>
-
-      {content}                          
-                      
-      </section>
-
-      <footer>
-          <Bottom />
-      </footer>
-      
-      </>
-    )
-  }
+}
 
 export default MyProfilePage;

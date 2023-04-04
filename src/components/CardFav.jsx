@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getDataFavoritesPhotos, getErrorFavoritesPhotos, 
-     getIsFavoritePhoto} from "../features/FavoritesSlice";
+     getIsFavoritePhoto, getFavoritePhotoStatus} from "../features/FavoritesSlice";
 
 import {setFavoritesPhotos, removeFavoritesPhotos} from "../features/FavoritesSlice";
 
@@ -17,36 +17,62 @@ import {deleteFavoritesLocalStorage, checkIfExistsFavorites,
 
 
 export function CardFav(props){
-    console.log(props)
     const favoritesData = useSelector(getDataFavoritesPhotos)  
+    // const favoriteListLocalStorage = readFavoritesLocalStorage();
 
-    const dispatch = useDispatch(getDataFavoritesPhotos);
+    let dataFavoritePhoto = useSelector(getDataFavoritesPhotos);
+    // const statusFavoritePhoto = useSelector();getFavoritePhotoStatus
+    const errorFavoritePhoto = useSelector(getErrorFavoritesPhotos);
+    const isFavoritePhoto = useSelector(getIsFavoritePhoto);
+
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+//         if (statusFavoritePhoto === "idle") {
+//             dispatch(setFavoritesPhotos(props));
+//            }
+//         }, [statusFavoritePhoto], dispatch);
+
+        
+//  if (statusFavoritePhoto === "loading") {
+//     content = "Loading";
+//   } else if (isFavoritePhoto === true) {
+    
+//   }
+//     if (dataFavoritePhoto !== undefined) {
+
+    
 
     const addToLocalStorage = () => {
-        dispatch(setFavoritesPhotos(props.photo));
-        createFavoritesInLocalStorage(favoritesData);
+        dispatch(setFavoritesPhotos(props.data));
+        createFavoritesInLocalStorage(dataFavoritePhoto);
+
     }
 
     const deleteLocalStorage = () => {
-        deleteFavoritesLocalStorage(props.photo);
+        deleteFavoritesLocalStorage(props.data);
+        console.log(props.data)
     }
 
     const showModal = () => {
-        document.getElementById('modal').showModal();
+        document.getElementById('modalCardFav').showModal();
     }
 
     const closeModal = () => {
-        document.getElementById('modal').close();
+        document.getElementById('modalCardFav').close();
     }
 
-    
-    
+
+    let photo = props.photo;
+
+
     return (
         <>
         <CardContainer >
         
         <div className="card">
-            <img className='imgAPI' src={props.photo.urls.full} onClick={showModal} alt=""/>
+            <img className='imgAPI' src={photo.urlsFull} onClick={showModal} alt=""/>
 
 
             <div className='cardButtonsContainer'>
@@ -62,7 +88,7 @@ export function CardFav(props){
         </div>
         </CardContainer>
 
-        <dialog id='modal' >
+        <dialog id='modalCardFav' >
             <h3>Photo info</h3>
             
             <div>
@@ -72,7 +98,7 @@ export function CardFav(props){
 
             <label>Description: </label>
             <span>
-                {props.photo.description}
+                {photo.description}
             </span>
 
             <label>Width: </label>
@@ -93,14 +119,14 @@ export function CardFav(props){
 
             <label>Date added: </label>
             <span>
-                {props.photo.dateAdded}
+                {props.photo.date}
             </span>
         </dialog>
         </>
         
-        
+    
     )
-}
+    })}
 
 export default CardFav;
 

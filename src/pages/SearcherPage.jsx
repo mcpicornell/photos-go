@@ -42,17 +42,16 @@ export const SearcherPage = (props) =>{
           photoData.forEach((photo) => {
             const savedPhoto = 
             {
+        
               id: photo.id,
               description: photo.description,
               width: photo.width,
               height: photo.height,
               likes: photo.likes,
-              urls: 
-              {
-                full: photo.urls.full,
-                thumb: photo.urls.thumb
-              },
+              urlsFull: photo.urls.full,
+              urlsThumb: photo.urls.thumb,
               tags: photo.tags
+              
             }
             
               content.push(

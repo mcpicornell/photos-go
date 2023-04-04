@@ -29,12 +29,25 @@ export function Card(props){
     const favoritesPhoto = useSelector(getIsFavoritePhoto); 
 
 
-    const dispatch = useDispatch(getDataFavoritesPhotos);
+    const dispatch = useDispatch();
+
 
     const addToLocalStorage = () => {
         dispatch(setFavoritesPhotos(props.photo));
+
+        let emptyObject={};
+        let emptyArrObj=[emptyObject];
+        let emptyObjInAnEmptyArr = {emptyArrObj}
+
+        if(favoritesData !==emptyObject ){
+           console.log(favoritesData)
+            createFavoritesInLocalStorage(favoritesData);
+        }
+    }
+
+    const addToLocalStorage1 = () => {
+        dispatch(setFavoritesPhotos(props.photo));
         createFavoritesInLocalStorage(favoritesData);
-  
     }
 
     const deleteLocalStorage = () => {
@@ -56,13 +69,13 @@ export function Card(props){
         <CardContainer >
         
         <div className="card">
-            <img className='imgAPI' src={props.photo.urls.full} onClick={showModal} alt=""/>
+            <img className='imgAPI' src={props.photo.urlsFull} onClick={showModal} alt=""/>
 
 
             <div className='cardButtonsContainer'>
 
-                <div id='addButtonContainer' className='buttonsContainer'>
-                    <img className='buttonsImg' src={imgPlusSolid} onClick={addToLocalStorage} />
+                <div id='addButtonContainer' className='buttonsContainer' onClick={addToLocalStorage1}>
+                    <img className='buttonsImg' src={imgPlusSolid} onClick={addToLocalStorage}  />
                 </div>
                                 
                 <div id='removeButtonContainer' className='buttonsContainer'>

@@ -12,11 +12,7 @@ export const HomePage = (props) =>{
     let photoData = useSelector(getAllPhoto);
     const photoStatus = useSelector(getPhotoStatus)
     const photoError = useSelector(getPhotoError);
-    const searchedPhoto = useSelector(getSearchedPhoto);
-
-    const propsImg = localStorage.getItem('favorites');
-    console.log(propsImg)
-    
+    const searchedPhoto = useSelector(getSearchedPhoto);    
 
     useEffect(() => {
          if (photoStatus === "idle") {
@@ -46,11 +42,8 @@ export const HomePage = (props) =>{
               width: photo.width,
               height: photo.height,
               likes: photo.likes,
-              urls: 
-              {
-                full: photo.urls.full,
-                thumb: photo.urls.thumb
-              },
+              urlsFull: photo.urls.full,
+              urlsThumb: photo.urls.thumb,
               tags: photo.tags
             }
               content.push(

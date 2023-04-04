@@ -13,6 +13,7 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
           break;
         }    
     }
+    
 
     
     if(objectExist === false){
@@ -26,8 +27,9 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
     
     else{
       let objectStoraLocalStorage = {
-        data: [],
+        data: []
       };
+      console.log(favoritesObj)
       objectStoraLocalStorage.data.push(favoritesObj);
       let favoritesLocalStorageUpdatedEncoded = JSON.stringify(
         objectStoraLocalStorage
@@ -43,22 +45,31 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
     const favoritesLocalStorage = localStorage.getItem('favorites')
     if(favoritesLocalStorage !== null){
         const favoritesLocalStorageParse = JSON.parse(favoritesLocalStorage);
-        
+        console.log('favList')
+        console.log(favoritesLocalStorageParse.data)
 
-        favoritesLocalStorageParse.data.forEach(obj => {
-            console.log(obj.id)
-        })
-        let favoritesFiltered = favoritesLocalStorageParse.data.filter(index => index.id !== favoritesObj.id
-        )
+    
+        // let favoritesFiltered = favoritesLocalStorageParse.filter(index => index.id !== favoritesObj.id
+        // )
+        let favoritesFilt = [];
+        for(let i=1; i<favoritesLocalStorageParse.data.length; i++){
+          if(favoritesLocalStorageParse[i].id 
+            !== favoritesObj.id){
+            favoritesFilt.push(favoritesLocalStorageParse[i]);
+             
+          }
+        }
+
+        console.log(favoritesFilt);
 
             const favoritesFiltradasData = {
-                data: favoritesFiltered
+                data: favoritesFilt
             } 
 
-        console.log(favoritesFiltradasData)
-        console.log(localStorage.getItem('favorites'))
+        // console.log(favoritesFiltradasData)
+        // console.log(localStorage.getItem('favorites'))
         
-        console.log(favoritesFiltradasData);
+        // console.log(favoritesFiltradasData);
        
         localStorage.setItem('favorites', JSON.stringify(favoritesFiltradasData));
         
