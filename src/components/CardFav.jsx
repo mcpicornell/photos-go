@@ -11,7 +11,7 @@ import { getDataFavoritesPhotos, getErrorFavoritesPhotos,
 import {setFavoritesPhotos, removeFavoritesPhotos} from "../features/FavoritesSlice";
 
 import {deleteFavoritesLocalStorage, checkIfExistsFavorites, 
-    readfavoritesLocalStorage, createFavoritesInLocalStorage
+    readfavoritesLocalStorage, createFavoritesInLocalStorage, deleteFotoLocalStorage
 } from '../data/localStorage'
 
 

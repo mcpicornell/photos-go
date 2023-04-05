@@ -45,32 +45,25 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
     const favoritesLocalStorage = localStorage.getItem('favorites')
     if(favoritesLocalStorage !== null){
         const favoritesLocalStorageParse = JSON.parse(favoritesLocalStorage);
-    
-        // let favoritesFiltered = favoritesLocalStorageParse.filter(index => index.id !== favoritesObj.id
-        // )
         let favoritesFilt = [];
 
+        
         for(let i=0; i<favoritesLocalStorageParse.data.length; i++){
-          if(favoritesLocalStorageParse.data[i.id] 
+          
+          if(favoritesLocalStorageParse.data[i].id 
             !== favoritesObj.id){
-            favoritesFilt.push(favoritesLocalStorageParse.data[i.id]);
+            favoritesFilt.push(favoritesLocalStorageParse.data[i].id);
           }
         }
 
         console.log(favoritesFilt);
 
-            const favoritesFiltradasData = {
+            const favoritesFilteredData = {
                 data: favoritesFilt
             } 
-
-        // console.log(favoritesFiltradasData)
-        // console.log(localStorage.getItem('favorites'))
-        
-        // console.log(favoritesFiltradasData);
        
-        localStorage.setItem('favorites', JSON.stringify(favoritesFiltradasData));
-        
-        
+        localStorage.setItem('favorites', JSON.stringify(favoritesFilteredData));
+    
     }
   };
 

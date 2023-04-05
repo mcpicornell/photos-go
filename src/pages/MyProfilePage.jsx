@@ -26,9 +26,9 @@ export function MyProfilePage(){
 //     setFavoriteList(favoriteListLocalStorage);
 //   }, [favoriteListLocalStorage])
 
-
-  if(favoriteListLocalStorage !== undefined){
   let content;
+  if(favoriteListLocalStorage !== undefined){
+  
 
      content = [];
      const dateString = JSON.stringify(date);
@@ -50,8 +50,8 @@ export function MyProfilePage(){
              <CardFav photo={savedPhoto}/>
            </>
          );
-         
-       });
+     }
+       )};
      
    console.log(errorFavoritePhoto);
 
@@ -72,7 +72,7 @@ return (
    </>
    
 )
-}
+
 }
 
 export default MyProfilePage;
