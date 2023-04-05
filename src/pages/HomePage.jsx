@@ -16,7 +16,7 @@ export const HomePage = (props) =>{
 
     useEffect(() => {
          if (photoStatus === "idle") {
-          dispatch(getPhoto());
+          dispatch(getPhoto(''));
 
          }
       }, [photoStatus], dispatch);

@@ -52,7 +52,7 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
           
           if(favoritesLocalStorageParse.data[i].id 
             !== favoritesObj.id){
-            favoritesFilt.push(favoritesLocalStorageParse.data[i].id);
+            favoritesFilt.push(favoritesLocalStorageParse.data[i]);
           }
         }
 

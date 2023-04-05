@@ -10,25 +10,17 @@ import { getDataFavoritesPhotos, getErrorFavoritesPhotos,
 
 import {setFavoritesPhotos, removeFavoritesPhotos} from "../features/FavoritesSlice";
 
-import {deleteFavoritesLocalStorage, checkIfExistsFavorites, 
-    readfavoritesLocalStorage, createFavoritesInLocalStorage, deleteFotoLocalStorage
+import {deleteFavoritesLocalStorage, 
+    readFavoritesLocalStorage, createFavoritesInLocalStorage
 } from '../data/localStorage'
 
 
 
 export function CardFav(props){
-    const favoritesData = useSelector(getDataFavoritesPhotos)  
-    // const favoriteListLocalStorage = readFavoritesLocalStorage();
-
-    let dataFavoritePhoto = useSelector(getDataFavoritesPhotos);
-    // const statusFavoritePhoto = useSelector();getFavoritePhotoStatus
-    const errorFavoritePhoto = useSelector(getErrorFavoritesPhotos);
-    const isFavoritePhoto = useSelector(getIsFavoritePhoto);
-
-
     const deleteLocalStorage = () => {
-        console.log(props.photo)
+        console.log('soy props')
         deleteFavoritesLocalStorage(props.photo);
+
     }
 
     const showModal = () => {
@@ -39,9 +31,13 @@ export function CardFav(props){
         document.getElementById('modalCardFav').close();
     }
 
-
-    
-
+    const favoritesData = useSelector(getDataFavoritesPhotos)  
+    // const favoriteListLocalStorage = readFavoritesLocalStorage();
+    const dispatch = useDispatch();
+    let dataFavoritePhoto = useSelector(getDataFavoritesPhotos);
+    // const statusFavoritePhoto = useSelector();getFavoritePhotoStatus
+    const errorFavoritePhoto = useSelector(getErrorFavoritesPhotos);
+    const isFavoritePhoto = useSelector(getIsFavoritePhoto);
 
     return (
         <>
