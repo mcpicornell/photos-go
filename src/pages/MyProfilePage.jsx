@@ -8,6 +8,7 @@ import { CardFav } from "../components/CardFav";
 import { readFavoritesLocalStorage } from "../data/localStorage";
 import { getDataFavoritesPhotos, getErrorFavoritesPhotos , getFavoritePhotoStatus, getIsFavoritePhoto } from "../features/FavoritesSlice";
 import {setFavoritesPhotos, removeFavoritesPhotos} from "../features/FavoritesSlice";
+import { useState } from "react";
 
 export function MyProfilePage(){
     const dispatch = useDispatch();
@@ -19,28 +20,19 @@ export function MyProfilePage(){
     const isFavoritePhoto = useSelector(getIsFavoritePhoto);
 
     let date = new Date();
-  
-  useEffect(() => {
-    if (statusFavoritePhoto === "idle") {
-     dispatch(setFavoritesPhotos(favoriteListLocalStorage));
-    }
- }, [statusFavoritePhoto], dispatch);
- 
- let content;
- if (statusFavoritePhoto === "loading") {
-   content = "Loading";
- } else if (isFavoritePhoto === true) {
 
-   
-   if (dataFavoritePhoto !== undefined) {
-   
-    //  if (!(Array.isArray(dataFavoritePhoto))){
+// const [favoriteList, setFavoriteList] = useState(favoriteListLocalStorage);
+//   useEffect(() =>{
+//     setFavoriteList(favoriteListLocalStorage);
+//   }, [favoriteListLocalStorage])
 
-    //   dataFavoritePhoto = dataFavoritePhoto.data;
-    //  }
+
+  if(favoriteListLocalStorage !== undefined){
+  let content;
+
      content = [];
      const dateString = JSON.stringify(date);
-     dataFavoritePhoto.forEach((favorite) => { 
+     favoriteListLocalStorage.forEach((favorite) => { 
        const savedPhoto = 
        {
         id: favorite.id,
@@ -48,14 +40,10 @@ export function MyProfilePage(){
         width: favorite.width,
         height: favorite.height,
         likes: favorite.likes,
-        //  urls: {
-        //   full: favorite.urls['full'],
-        //   thumb: favorite.urls['thumb']
-        // },
         urlsFull: favorite.urlsFull,
         urlsThumb: favorite.urlsThumb,
         tags: favorite.tags,
-        // date: dateString
+        date: dateString
        }
          content.push(
            <>
@@ -65,11 +53,8 @@ export function MyProfilePage(){
          
        });
      
-   }
- } else {
    console.log(errorFavoritePhoto);
- }
- 
+
 
 return (
    <>
@@ -87,7 +72,7 @@ return (
    </>
    
 )
-
+}
 }
 
 export default MyProfilePage;

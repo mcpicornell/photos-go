@@ -45,18 +45,15 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
     const favoritesLocalStorage = localStorage.getItem('favorites')
     if(favoritesLocalStorage !== null){
         const favoritesLocalStorageParse = JSON.parse(favoritesLocalStorage);
-        console.log('favList')
-        console.log(favoritesLocalStorageParse.data)
-
     
         // let favoritesFiltered = favoritesLocalStorageParse.filter(index => index.id !== favoritesObj.id
         // )
         let favoritesFilt = [];
-        for(let i=1; i<favoritesLocalStorageParse.data.length; i++){
-          if(favoritesLocalStorageParse[i].id 
+
+        for(let i=0; i<favoritesLocalStorageParse.data.length; i++){
+          if(favoritesLocalStorageParse.data[i.id] 
             !== favoritesObj.id){
-            favoritesFilt.push(favoritesLocalStorageParse[i]);
-             
+            favoritesFilt.push(favoritesLocalStorageParse.data[i.id]);
           }
         }
 

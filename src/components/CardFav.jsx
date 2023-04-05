@@ -26,31 +26,9 @@ export function CardFav(props){
     const isFavoritePhoto = useSelector(getIsFavoritePhoto);
 
 
-    const dispatch = useDispatch();
-
-//         if (statusFavoritePhoto === "idle") {
-//             dispatch(setFavoritesPhotos(props));
-//            }
-//         }, [statusFavoritePhoto], dispatch);
-
-        
-//  if (statusFavoritePhoto === "loading") {
-//     content = "Loading";
-//   } else if (isFavoritePhoto === true) {
-    
-//   }
-//     if (dataFavoritePhoto !== undefined) {
-
-    
-
-    const addToLocalStorage = () => {
-        dispatch(setFavoritesPhotos(props.data));
-        createFavoritesInLocalStorage(dataFavoritePhoto);
-    }
-
     const deleteLocalStorage = () => {
-        deleteFavoritesLocalStorage(props.data);
-        console.log(props.data)
+        console.log(props.photo)
+        deleteFavoritesLocalStorage(props.photo);
     }
 
     const showModal = () => {
@@ -62,7 +40,7 @@ export function CardFav(props){
     }
 
 
-    console.log(props.photo)
+    
 
 
     return (
@@ -76,7 +54,7 @@ export function CardFav(props){
             <div className='cardButtonsContainer'>
 
                 <div id='addButtonContainer' className='buttonsContainer'>
-                    <img className='buttonsImg' src={imgPlusSolid} onClick={addToLocalStorage} />
+                    <img className='buttonsImg' src={imgPlusSolid} />
                 </div>
                                 
                 <div id='removeButtonContainer' className='buttonsContainer'>

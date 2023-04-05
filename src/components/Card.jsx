@@ -32,93 +32,29 @@ export function Card(props){
     const dispatch = useDispatch();
 
 
-    const addToLocalStorage = () => {
-        dispatch(setFavoritesPhotos(props.photo));
-
-        let emptyObject={};
-        let emptyArrObj=[emptyObject];
-        let emptyObjInAnEmptyArr = {emptyArrObj}
-
-        if(favoritesData !==emptyObject ){
-           console.log(favoritesData)
-            createFavoritesInLocalStorage(favoritesData);
-        }
+    const addToLocalStorage = () => {        
+        createFavoritesInLocalStorage(props.photo);
     }
 
-    const addToLocalStorage1 = () => {
-        dispatch(setFavoritesPhotos(props.photo));
-        createFavoritesInLocalStorage(favoritesData);
-    }
-
-    const deleteLocalStorage = () => {
-        deleteFavoritesLocalStorage(props.photo);
-    }
-
-    const showModal = () => {
-        document.getElementById('modal').showModal();
-    }
-
-    const closeModal = () => {
-        document.getElementById('modal').close();
-    }
-
-    
-    
     return (
         <>
         <CardContainer >
-        
         <div className="card">
-            <img className='imgAPI' src={props.photo.urlsFull} onClick={showModal} alt=""/>
+            <img className='imgAPI' src={props.photo.urlsFull} alt=""/>
 
 
             <div className='cardButtonsContainer'>
 
-                <div id='addButtonContainer' className='buttonsContainer' onClick={addToLocalStorage1}>
+                <div id='addButtonContainer' className='buttonsContainer'>
                     <img className='buttonsImg' src={imgPlusSolid} onClick={addToLocalStorage}  />
                 </div>
                                 
                 <div id='removeButtonContainer' className='buttonsContainer'>
-                    <img className='buttonsImg' src={imgMinusSolid} onClick={deleteLocalStorage}/>
+                    <img className='buttonsImg' src={imgMinusSolid} />
                 </div>
             </div>
         </div>
         </CardContainer>
-
-        <dialog id='modal' >
-            <h3>Photo info</h3>
-            
-            <div>
-                <img src={imgCrossSolid} onClick={closeModal}/>
-            </div>
-            
-
-            <label>Description: </label>
-            <span>
-                {props.photo.description}
-            </span>
-
-            <label>Width: </label>
-            <span>
-                {props.photo.width}
-            </span>
-
-            <label>Height: </label>
-            <span>
-                {props.photo.height}
-            </span>
-
-
-            <label>Likes: </label>
-            <span>
-                {props.photo.likes}
-            </span>
-
-            <label>Date added: </label>
-            <span>
-                {props.photo.dateAdded}
-            </span>
-        </dialog>
         </>
         
         

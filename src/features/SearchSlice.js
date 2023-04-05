@@ -18,7 +18,6 @@ export const SearchSlice = createSlice({
         state.status = 'idle';
         state.searchedPhoto = "";
         state.data = [];
-        
       }
     },
     extraReducers: (builder) => {
