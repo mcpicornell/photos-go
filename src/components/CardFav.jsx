@@ -28,7 +28,6 @@ export function CardFav(props){
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
 //         if (statusFavoritePhoto === "idle") {
 //             dispatch(setFavoritesPhotos(props));
 //            }
@@ -47,7 +46,6 @@ export function CardFav(props){
     const addToLocalStorage = () => {
         dispatch(setFavoritesPhotos(props.data));
         createFavoritesInLocalStorage(dataFavoritePhoto);
-
     }
 
     const deleteLocalStorage = () => {
@@ -64,7 +62,7 @@ export function CardFav(props){
     }
 
 
-    let photo = props.photo;
+    console.log(props.photo)
 
 
     return (
@@ -72,7 +70,7 @@ export function CardFav(props){
         <CardContainer >
         
         <div className="card">
-            <img className='imgAPI' src={photo.urlsFull} onClick={showModal} alt=""/>
+            <img className='imgAPI' src={props.photo.urlsFull} onClick={showModal} alt=""/>
 
 
             <div className='cardButtonsContainer'>
@@ -98,7 +96,7 @@ export function CardFav(props){
 
             <label>Description: </label>
             <span>
-                {photo.description}
+                {props.photo.description}
             </span>
 
             <label>Width: </label>
@@ -126,7 +124,7 @@ export function CardFav(props){
         
     
     )
-    })}
+    }
 
 export default CardFav;
 

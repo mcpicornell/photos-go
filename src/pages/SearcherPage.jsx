@@ -19,6 +19,7 @@ export const SearcherPage = (props) =>{
 
     useEffect(() => {
         if (photoStatus === "idle") {
+            console.log(searchedPhoto)
             dispatch(getPhoto(searchedPhoto));
           }  
       }, [searchedPhoto, dispatch, photoStatus]);
@@ -74,7 +75,7 @@ export const SearcherPage = (props) =>{
 
         <section className='cardsContainer'>
         
-            
+            {content}
             
         </section>
 
