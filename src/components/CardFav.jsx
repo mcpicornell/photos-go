@@ -1,99 +1,55 @@
-import imgMinusSolid from '../img/minus-solid.svg'
-import imgPlusSolid from '../img/plus-solid.svg'
-import imgCrossSolid from '../img/xmark-solid.svg'
 import styled from 'styled-components'
-import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { getDataFavoritesPhotos, getErrorFavoritesPhotos, 
-     getIsFavoritePhoto, getFavoritePhotoStatus} from "../features/FavoritesSlice";
-
-import {setFavoritesPhotos, removeFavoritesPhotos} from "../features/FavoritesSlice";
+import cloudArrowDownSolid from '../img/cloud-arrow-down-solid.svg';
+import trashSolid from '../img/trash-solid.svg';
+import {saveAs} from "file-saver";
+import {setModal, setlocalStorage} from "../features/FavoritesSlice";
 
 import {deleteFavoritesLocalStorage, 
     readFavoritesLocalStorage, createFavoritesInLocalStorage
 } from '../data/localStorage'
-
+import { useNavigate } from 'react-router-dom';
 
 
 export function CardFav(props){
-    const deleteLocalStorage = () => {
-        console.log('soy props')
-        deleteFavoritesLocalStorage(props.photo);
+    const dispatch = useDispatch();
+    const nav = useNavigate()
 
+    const deleteLocalStorage = () => {
+        deleteFavoritesLocalStorage(props.photo);
+        dispatch(setlocalStorage(readFavoritesLocalStorage()))
     }
 
     const showModal = () => {
-        document.getElementById('modalCardFav').showModal();
+        dispatch(setModal(props.photo))
+        nav('/myProfile/info')    
+        }
+
+    const downloadImg = () => {
+        saveAs(props.photo.urlsFull, props.photo.id)
     }
 
-    const closeModal = () => {
-        document.getElementById('modalCardFav').close();
-    }
-
-    const favoritesData = useSelector(getDataFavoritesPhotos)  
-    // const favoriteListLocalStorage = readFavoritesLocalStorage();
-    const dispatch = useDispatch();
-    let dataFavoritePhoto = useSelector(getDataFavoritesPhotos);
-    // const statusFavoritePhoto = useSelector();getFavoritePhotoStatus
-    const errorFavoritePhoto = useSelector(getErrorFavoritesPhotos);
-    const isFavoritePhoto = useSelector(getIsFavoritePhoto);
-
+    
     return (
         <>
         <CardContainer >
         
         <div className="card">
-            <img className='imgAPI' src={props.photo.urlsFull} onClick={showModal} alt=""/>
+            <img className='imgLS' src={props.photo.urlsFull} onClick={showModal} alt=""/>
 
 
             <div className='cardButtonsContainer'>
 
-                <div id='addButtonContainer' className='buttonsContainer'>
-                    <img className='buttonsImg' src={imgPlusSolid} />
+                <div id='downloadIcon' className='buttonsContainer' >
+                    <img className='buttonsImg' src={cloudArrowDownSolid} onClick={downloadImg}/>
                 </div>
                                 
                 <div id='removeButtonContainer' className='buttonsContainer'>
-                    <img className='buttonsImg' src={imgMinusSolid} onClick={deleteLocalStorage}/>
+                    <img className='buttonsImg' src={trashSolid} onClick={deleteLocalStorage}/>
                 </div>
             </div>
         </div>
         </CardContainer>
-
-        <dialog id='modalCardFav' >
-            <h3>Photo info</h3>
-            
-            <div>
-                <img src={imgCrossSolid} onClick={closeModal}/>
-            </div>
-            
-
-            <label>Description: </label>
-            <span>
-                {props.photo.description}
-            </span>
-
-            <label>Width: </label>
-            <span>
-                {props.photo.width}
-            </span>
-
-            <label>Height: </label>
-            <span>
-                {props.photo.height}
-            </span>
-
-
-            <label>Likes: </label>
-            <span>
-                {props.photo.likes}
-            </span>
-
-            <label>Date added: </label>
-            <span>
-                {props.photo.date}
-            </span>
-        </dialog>
         </>
         
     
@@ -121,14 +77,19 @@ const CardContainer = styled.div`
         padding-left: 5px;
         padding-right: 5px;
         padding-bottom: 0.5rem;
+        margin-top: 55px;
       
 
     }
 
-    .imgAPI{
+    .imgLS{
         height: 250px;
         width: 300px;
         border: 0.5px solid black;
+    }
+
+    img{
+        border-radius: 0.5rem;
     }
 
     .cardButtonsContainer{
@@ -154,9 +115,23 @@ const CardContainer = styled.div`
     #removeButtonContainer{
         left: 150px;
     }
+
+    #removeButtonContainer img{
+        width: 22px;
+    }
+
     .buttonsImg{
         height: 50px;
-        width: 15px;
+        width: 30px;
 
+    }
+
+    .buttonsImg:hover{
+        cursor: pointer;
+
+    }
+
+    #downloadIcon img{
+        width: 37px;
     }
 `

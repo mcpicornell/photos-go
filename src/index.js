@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { HomePage } from '../src/pages/HomePage';
+
+//ESTO ES UNA COPIA
 import { MyProfilePage } from '../src/pages/MyProfilePage';
 import {SearcherPage} from '../src/pages/SearcherPage';
-
+import {InfoPage} from './pages/InfoPage'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import {FavoriteSearcherPage} from './pages/FavoriteSearcherPage'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -18,8 +21,12 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/myProfile" element={<MyProfilePage />} /> 
           <Route path="/searcher" element={<SearcherPage />} />
+
+          <Route path="/myProfile" element={<MyProfilePage />}/>
+          <Route path='/myProfile/info' element={<InfoPage/>} />
+          <Route path='/myProfile/searcher' element={<FavoriteSearcherPage/>} />  
+          
         </Routes>
       </BrowserRouter>
       </Provider>

@@ -1,38 +1,34 @@
-import imgMinusSolid from '../img/minus-solid.svg'
-import imgPlusSolid from '../img/plus-solid.svg'
-import imgCrossSolid from '../img/xmark-solid.svg'
+import cloudArrowDownSolid from '../img/cloud-arrow-down-solid.svg';
+import {saveAs} from "file-saver";
+
+import floppyDiskSolid from '../img/floppy-disk-solid.svg'
 import styled from 'styled-components'
 import { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 
 import { getDataFavoritesPhotos, getErrorFavoritesPhotos, 
      getIsFavoritePhoto} from "../features/FavoritesSlice";
 
-import {setFavoritesPhotos, removeFavoritesPhotos} from "../features/FavoritesSlice";
+
 
 import {deleteFavoritesLocalStorage, checkIfExistsFavorites, 
     readfavoritesLocalStorage, createFavoritesInLocalStorage
 } from '../data/localStorage'
 
 
-// import { deleteFavoritesLocalStorage, 
-//     checkIfExistsFavorites, readfavoritesLocalStorage, 
-//     createfavoritesInLocalStorage} 
-//     from '..data/localStorage'
-
-// const imgMinusSolid = ("../img/minus-solid.svg");
-// const imgPlusSolid = ("C:/Users7mcpic/OneDrive/Documentos/OxygenAcademy/Repositiorios/RepositoriosGitHubMarc/photos-go/src/img/plus-solid.svg");
-
 export function Card(props){
     const favoritesData = useSelector(getDataFavoritesPhotos)  
     const favoritesError = useSelector(getErrorFavoritesPhotos)  
     const favoritesPhoto = useSelector(getIsFavoritePhoto); 
 
+    const downloadImg = () => {
+        saveAs(props.photo.urlsFull, props.photo.id)
+    }
 
-    const dispatch = useDispatch();
-
-
-    const addToLocalStorage = () => {        
+    const addToLocalStorage = () => {
+        const dateFunction = new Date();
+        const dateString = dateFunction.toString();
+        props.photo.date = dateString;      
         createFavoritesInLocalStorage(props.photo);
     }
 
@@ -46,11 +42,11 @@ export function Card(props){
             <div className='cardButtonsContainer'>
 
                 <div id='addButtonContainer' className='buttonsContainer'>
-                    <img className='buttonsImg' src={imgPlusSolid} onClick={addToLocalStorage}  />
+                    <img className='buttonsImg' src={floppyDiskSolid} onClick={addToLocalStorage}  />
                 </div>
                                 
-                <div id='removeButtonContainer' className='buttonsContainer'>
-                    <img className='buttonsImg' src={imgMinusSolid} />
+                <div id='downloadButtonContainer' className='buttonsContainer' onClick={downloadImg} >
+                    <img className='buttonsImg' src={cloudArrowDownSolid} />
                 </div>
             </div>
         </div>
@@ -92,6 +88,11 @@ const CardContainer = styled.div`
         border: 0.5px solid black;
     }
 
+    img{
+        border-radius: 0.5rem;
+    }
+    
+
     .cardButtonsContainer{
         display: flex;
         position: relative;
@@ -112,12 +113,24 @@ const CardContainer = styled.div`
 
     }
 
-    #removeButtonContainer{
+    #downloadButtonContainer{
         left: 150px;
     }
+
+    #downloadButtonContainer img{
+        width: 30px;
+    }
+
     .buttonsImg{
         height: 50px;
         width: 15px;
+    }
 
+    .buttonsImg:hover{
+        cursor: pointer;
+    }
+
+    #addButtonContainer img{
+        width: 25px;
     }
 `

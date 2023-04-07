@@ -19,7 +19,6 @@ export const Navbar = (props) => {
         const inputValue = document.getElementById('inputNavValue').value;
         const inputValueRefactor = inputValue.replace(/\s+/g, "-");
         dispatch(removePhotos());
-       console.log(inputValueRefactor)
         dispatch(setPhotos(inputValueRefactor));
    
         nav('/searcher');
@@ -33,7 +32,7 @@ export const Navbar = (props) => {
                     <h2>Photo Go!</h2>
                     <div className='searcherContainer'>
                         
-                        <div className='searcherImgContainer'>
+                            <div className='searcherImgContainer'>
                             <form onSubmit={onSubmitHandler}>
                             <input placeholder='Search...' id='inputNavValue' className='navSearcher'></input>
                             

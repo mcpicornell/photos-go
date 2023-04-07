@@ -11,12 +11,14 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
         if(favoritesLocalStorageObject.data[i].id === favoritesObj.id){
           objectExist = true;
           break;
-        }    
+        }
+            
     }
-    
 
-    
     if(objectExist === false){
+      if(favoritesObj.description === null){
+        favoritesObj.description = '';
+      }
       favoritesLocalStorageObject.data.push(favoritesObj);
       const favoritesLocalStorageUpdatedEncoded = JSON.stringify(
       favoritesLocalStorageObject);
@@ -26,13 +28,13 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
     }
     
     else{
-      let objectStoraLocalStorage = {
+      let objectLocalStorage = {
         data: []
       };
       console.log(favoritesObj)
-      objectStoraLocalStorage.data.push(favoritesObj);
+      objectLocalStorage.data.push(favoritesObj);
       let favoritesLocalStorageUpdatedEncoded = JSON.stringify(
-        objectStoraLocalStorage
+        objectLocalStorage
       );
       
        localStorage.setItem("favorites", favoritesLocalStorageUpdatedEncoded);
@@ -75,3 +77,41 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
     }
     return [];
   };
+
+  export const updateDescriptionLocalStorage = (favoriteObj, descriptionValue) => {
+    const favoritesLocalStorage = localStorage.getItem("favorites");
+    const favoritesLocalStorageObject = JSON.parse(favoritesLocalStorage);
+
+    console.log(favoritesLocalStorageObject)
+
+    for(let i=0; i < favoritesLocalStorageObject.data.length; i++){
+      if(favoritesLocalStorageObject.data[i].id === favoriteObj.id){
+        favoritesLocalStorageObject.data[i].description = descriptionValue;
+        break;
+      }
+       else{
+        console.log('Your description cannot be updated')
+       }
+      favoritesLocalStorageObject.data.push(favoriteObj);
+      const favoritesLocalStorageUpdatedEncoded = JSON.stringify(
+      favoritesLocalStorageObject);
+      localStorage.setItem("favorites", favoritesLocalStorageUpdatedEncoded);   
+  }
+
+  };
+
+//     export const updateDescriptionLocalStorage = (favoriteObj, description) => {
+//     const favoritesLocalStorage = localStorage.getItem("favorites");
+//     const favoritesLocalStorageObject = JSON.parse(favoritesLocalStorage);
+
+//     for(let i=0; i < favoritesLocalStorageObject.data.length; i++){
+//       if(favoritesLocalStorageObject.data[i].id === favoriteObj.id){
+//         deleteFavoritesLocalStorage(favoriteObj);
+//         createFavoritesInLocalStorage(favoriteObj);
+//         break;
+//       }
+//        else{
+//         console.log('Your description cannot be updated')
+//        }
+//   }
+// };

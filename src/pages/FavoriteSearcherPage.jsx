@@ -4,39 +4,57 @@ import imgSearcher from '../img/magnifying-glass-solid.svg'
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { CardFav } from "../components/CardFav";
-import { getLSinSlicer , getErrorFavoritesPhotos} from "../features/FavoritesSlice";
+import { getLSinSlicer , getErrorFavoritesPhotos, getSearchDescription} from "../features/FavoritesSlice";
 import { setSearchDescription } from "../features/FavoritesSlice";
 import { useNavigate } from "react-router-dom";
 
-export function MyProfilePage(){
 
+export function FavoriteSearcherPage(){
+
+    const dispatch = useDispatch();
+    const nav = useNavigate();
     const favoriteListLS = useSelector(getLSinSlicer)
     const errorFavoritePhoto = useSelector(getErrorFavoritesPhotos);
-    const dispatch = useDispatch();
-    const nav = useNavigate()
+    let descriptionSearched = useSelector(getSearchDescription);
+    console.log(descriptionSearched)
+
+    let content;
 
     const searchFavorite = (event) =>  {
       event.preventDefault();
-      const value = document.getElementById('inputMyProfileValue').value;
+      let value = document.getElementById('inputMyProfileValue').value;
       const valueRefactor = value.replace(/\s+/g, "-");
       const valueLowerCase = valueRefactor.toLowerCase();
       
-      dispatch(setSearchDescription(valueLowerCase));
-   
-      nav('/myProfile/searcher');
+        dispatch(setSearchDescription(valueLowerCase));
+        console.log(valueLowerCase)
+        nav('/myProfile/searcher');
+      
     }
 
-  let content;
+    if(descriptionSearched === null || descriptionSearched === ''   || descriptionSearched === undefined ){
+        content = 'ESTOS NO SON LOS ANDROIDES QUE ESTÁS BUSCANDO'
+    }
+
+    else{
+      
+      
+      let toSearch = descriptionSearched; //Will check if title have text 'search'
+
+      console.log(favoriteListLS)
+      
+      let result = favoriteListLS.filter(
+        
+        obj => 
+        obj.description.toLowerCase()
+        .includes(toSearch));
+      
+      console.log(result);
+
   if(favoriteListLS !== undefined){
-  let date = new Date();
-  date = date.toString();
-
-  // let description = new String();
-  // description = description.toString();
-
+  
      content = [];
-
-     favoriteListLS.forEach((favorite) => { 
+     result.forEach((favorite) => { 
        const savedPhoto = 
        {
         id: favorite.id,
@@ -50,10 +68,6 @@ export function MyProfilePage(){
         linksDownloadLocation: favorite.linksDownloadLocation,
         tags: favorite.tags,
         date: favorite.date
-       }
-
-       if(favoriteListLS.description === null){
-        savedPhoto.description = 'helloThere';
        }
        console.log(savedPhoto)
          content.push(
@@ -96,9 +110,9 @@ return (
    
 )
 
-}
+}}
 
-export default MyProfilePage;
+export default FavoriteSearcherPage;
 
 
 const SearcherContainer = styled.section`
