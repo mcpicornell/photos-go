@@ -4,14 +4,15 @@ import imgCrossSolid from '../img/xmark-solid.svg'
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { setPhotos } from "../features/SearchSlice";
-import {updateDescriptionLocalStorage} from '../data/localStorage'
+import {readFavoritesLocalStorage, updateDescriptionLocalStorage} from '../data/localStorage'
+import { useState } from "react";
+import { setFavoritesPhotos, setModal } from "../features/FavoritesSlice";
+import {changeDescription} from '../features/FavoritesSlice'
 
-
-
-export const Modal = (props) => {
+export const Modal = () => {
     const dispatch = useDispatch();
-
-
+    const [editDescription, setEditDescription] = useState(false);
+    
     const modalData = useSelector(getModaldata);
     const nav = useNavigate()
 
@@ -20,12 +21,12 @@ export const Modal = (props) => {
             nav('/myProfile');
         }
 
-        const updateDescription = () => {
+
+        const updateDescription = (event) => {
+            event.preventDefault();
             const descriptionValue = document.getElementById('editDescription').value;
-            // props.favorite.description=description;
-            dispatch(updateDescriptionLocalStorage(props , descriptionValue))
-            // nav('/myProfile/info');
-        }
+            dispatch(changeDescription({id: modalData.id , description: descriptionValue}));
+          };
 
     return (
         <>

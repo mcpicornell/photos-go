@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { readFavoritesLocalStorage } from '../data/localStorage';
-
+import { updateDescriptionLocalStorage } from '../data/localStorage';
 
 export const FavoritesSlice = createSlice({
     name: "favorite",
@@ -28,7 +28,7 @@ export const FavoritesSlice = createSlice({
         state.isFavorite = false;
       },
       setModal: (state, action) => {
-        console.log(readFavoritesLocalStorage())
+        
 
         const favoriteList = readFavoritesLocalStorage();
         const modalList= favoriteList.filter(obj => 
@@ -41,6 +41,15 @@ export const FavoritesSlice = createSlice({
       },
       deleteSearchDescription: (state) => {
       state.searchDescription = '';
+    },
+      changeDescription: (state, action) => { 
+      for (let i=0; i < state.data.length; i++) {
+        if (action.payload.id === state.data[i].id) {
+          state.data[i].description = action.payload.description;
+          break;
+        }
+      }
+      updateDescriptionLocalStorage(state.favData); //Update del cambio de descripción a las fotos favoritas de forma local (sin hacer POST en la API)
     }
     },
   });
@@ -52,4 +61,4 @@ export const FavoritesSlice = createSlice({
   export const getFavoritePhotoStatus = (state) => state.favorite.status;
   export const getSearchDescription = (state) => state.favorite.searchDescription;
 
-  export const {setSearchDescription , deleteSearchDescription , setModal, setFavoritesPhotos, setlocalStorage, removeFavoritesPhotos} = FavoritesSlice.actions;
+  export const {changeDescription, setSearchDescription , deleteSearchDescription , setModal, setFavoritesPhotos, setlocalStorage, removeFavoritesPhotos} = FavoritesSlice.actions;

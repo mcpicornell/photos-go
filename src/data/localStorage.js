@@ -78,27 +78,36 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
     return [];
   };
 
-  export const updateDescriptionLocalStorage = (favoriteObj, descriptionValue) => {
-    const favoritesLocalStorage = localStorage.getItem("favorites");
-    const favoritesLocalStorageObject = JSON.parse(favoritesLocalStorage);
-
-    console.log(favoritesLocalStorageObject)
-
-    for(let i=0; i < favoritesLocalStorageObject.data.length; i++){
-      if(favoritesLocalStorageObject.data[i].id === favoriteObj.id){
-        favoritesLocalStorageObject.data[i].description = descriptionValue;
-        break;
-      }
-       else{
-        console.log('Your description cannot be updated')
-       }
-      favoritesLocalStorageObject.data.push(favoriteObj);
-      const favoritesLocalStorageUpdatedEncoded = JSON.stringify(
-      favoritesLocalStorageObject);
-      localStorage.setItem("favorites", favoritesLocalStorageUpdatedEncoded);   
-  }
-
+  export const updateDescriptionLocalStorage = (updatedData) => {
+    const updatedArrayData = {
+      data: updatedData
+    };
+    const updatedArrayDataToString = JSON.stringify(updatedArrayData);
+    localStorage.setItem("favoritePhotos", updatedArrayDataToString);
   };
+
+  // export const updateDescriptionLocalStorage = (favoriteObj, descriptionValue) => {
+  //   const favoritesLocalStorage = readFavoritesLocalStorage();
+
+  //   console.log(favoritesLocalStorage[0].id)
+  //   console.log(favoriteObj.id)
+
+  //   for(let i=0; i < favoritesLocalStorage.length; i++){
+  //     if(favoritesLocalStorage[i].id === 
+  //       favoriteObj.id){
+  //       favoritesLocalStorage[i].description = descriptionValue;
+  //       let objectInLocalStorage = {
+  //         data: favoritesLocalStorage
+  //       }
+  //       localStorage.setItem('favorites', JSON.stringify(objectInLocalStorage));
+  //       break;
+  //     }
+  //      else{
+  //       console.log('Your description cannot be updated')
+  //      }
+  // }
+
+  // };
 
 //     export const updateDescriptionLocalStorage = (favoriteObj, description) => {
 //     const favoritesLocalStorage = localStorage.getItem("favorites");
