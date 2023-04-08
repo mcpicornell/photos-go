@@ -44,9 +44,7 @@ export const HomePage = (props) =>{
               likes: photo.likes,
               urlsFull: photo.urls.full,
               urlsThumb: photo.urls.thumb,
-              tags: photo.tags,
-              linksDownload: photo.links.download,
-              linksDownloadLocation: photo.links.download_location
+              tags: photo.tags
             }
               content.push(
                 <>

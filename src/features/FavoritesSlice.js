@@ -43,13 +43,13 @@ export const FavoritesSlice = createSlice({
       state.searchDescription = '';
     },
       changeDescription: (state, action) => { 
-      for (let i=0; i < state.data.length; i++) {
-        if (action.payload.id === state.data[i].id) {
-          state.data[i].description = action.payload.description;
+      for (let i=0; i < state.localStorage.length; i++) {
+        if (action.payload.id === state.localStorage[i].id) {
+          state.localStorage[i].description = action.payload.description;
           break;
         }
       }
-      updateDescriptionLocalStorage(state.favData); //Update del cambio de descripción a las fotos favoritas de forma local (sin hacer POST en la API)
+      updateDescriptionLocalStorage(state.localStorage); //Update del cambio de descripción a las fotos favoritas de forma local (sin hacer POST en la API)
     }
     },
   });

@@ -10,17 +10,20 @@ import { getDataFavoritesPhotos,getLSinSlicer , getErrorFavoritesPhotos , getFav
 import {setFavoritesPhotos, removeFavoritesPhotos, setLocalStorage, setModal, setSearchDescription, deleteSearchDescription} from "../features/FavoritesSlice";
 import { useState } from "react";
 import {Modal} from '../components/Modal'
+import { getModaldata } from "../features/FavoritesSlice";
 
 export function InfoPage(){
 
+    const modalData = useSelector(getModaldata);
+
     return(
         <>
-        <section>
+        <header>
         <Navbar/> 
-        </section>
+        </header>
 
         <section>
-        <Modal /> 
+        <Modal info={modalData}/> 
         </section>
     
         </>

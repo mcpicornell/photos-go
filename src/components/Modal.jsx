@@ -6,26 +6,28 @@ import styled from "styled-components";
 import { setPhotos } from "../features/SearchSlice";
 import {readFavoritesLocalStorage, updateDescriptionLocalStorage} from '../data/localStorage'
 import { useState } from "react";
-import { setFavoritesPhotos, setModal } from "../features/FavoritesSlice";
+import { setFavoritesPhotos, setModal, setlocalStorage } from "../features/FavoritesSlice";
 import {changeDescription} from '../features/FavoritesSlice'
 
-export const Modal = () => {
+export const Modal = (props) => {
+    console.log(props);
     const dispatch = useDispatch();
-    const [editDescription, setEditDescription] = useState(false);
     
-    const modalData = useSelector(getModaldata);
+
     const nav = useNavigate()
 
     const closeModal = () => {
             
             nav('/myProfile');
         }
-
-
+        
         const updateDescription = (event) => {
             event.preventDefault();
             const descriptionValue = document.getElementById('editDescription').value;
-            dispatch(changeDescription({id: modalData.id , description: descriptionValue}));
+            dispatch(setFavoritesPhotos(props.info))
+            dispatch(changeDescription({id: props.info.id , description: descriptionValue}));
+            dispatch(setModal(props.info))
+            nav('/myProfile/info');
           };
 
     return (
@@ -41,7 +43,7 @@ export const Modal = () => {
             <form className="containerElements" onSubmit={updateDescription}>
                 <label>Description: </label>
                 <span>
-                    {modalData.description}
+                    {props.info.description}
                 </span>
                 <input id='editDescription' placeholder="Write here your new description here..." />
                 <button>Update Description</button>
@@ -50,28 +52,28 @@ export const Modal = () => {
             <div className="containerElements">
                 <label>Width: </label>
                 <span>
-                    {modalData.width}
+                    {props.info.width}
                 </span>
             </div>
 
             <div className="containerElements">
                 <label>Height: </label>
                 <span>
-                    {modalData.height}
+                    {props.info.height}
                 </span>
             </div>
 
             <div className="containerElements">
                 <label>Likes: </label>
                 <span>
-                    {modalData.likes}
+                    {props.info.likes}
                 </span>
             </div>
            
             <div className="containerElements">
                 <label >Date added: </label>
                 <span>
-                    {modalData.date}
+                    {props.info.date}
                 </span>
 
             </div>

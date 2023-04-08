@@ -64,8 +64,6 @@ export function FavoriteSearcherPage(){
         likes: favorite.likes,
         urlsFull: favorite.urlsFull,
         urlsThumb: favorite.urlsThumb,
-        linksDownload: favorite.linksDownload,
-        linksDownloadLocation: favorite.linksDownloadLocation,
         tags: favorite.tags,
         date: favorite.date
        }
