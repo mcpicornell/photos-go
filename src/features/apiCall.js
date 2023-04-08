@@ -1,20 +1,6 @@
-import { createAsyncThunk, isAsyncThunkAction } from "@reduxjs/toolkit";
-// import { inputSearcherValue } from '../pages/SearcherPage';
-// Per-page and Total
-// The X-Per-Page and X-Total headers give the number of elements returned on each page and the total number of elements respectively.
-
-// Link
-// URL’s for the first, last, next, and previous pages are supplied, if applicable. They are comma-separated and differentiated with a rel attribute.
-
-// For example, after requesting page 3 of the photo list:
-
-// Link: <https://api.unsplash.com/photos?page=1>; rel="first",
-// <https://api.unsplash.com/photos?page=2>; rel="prev",
-// <https://api.unsplash.com/photos?page=346>; rel="last",
-// <https://api.unsplash.com/photos?page=4>; rel="next"
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 let page = 1;
-// let inputValue = document.getElementById('inputNavValue').value;
 
   export const getPhoto = createAsyncThunk('photo/getPhoto', async (searchedPhoto) =>{
     

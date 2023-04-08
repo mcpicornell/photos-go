@@ -4,7 +4,6 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { HomePage } from '../src/pages/HomePage';
 
-//ESTO ES UNA COPIA
 import { MyProfilePage } from '../src/pages/MyProfilePage';
 import {SearcherPage} from '../src/pages/SearcherPage';
 import {InfoPage} from './pages/InfoPage'

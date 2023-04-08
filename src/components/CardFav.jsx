@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import cloudArrowDownSolid from '../img/cloud-arrow-down-solid.svg';
 import trashSolid from '../img/trash-solid.svg';
 import {saveAs} from "file-saver";
 import {setModal, setlocalStorage} from "../features/FavoritesSlice";
 
 import {deleteFavoritesLocalStorage, 
-    readFavoritesLocalStorage, createFavoritesInLocalStorage
+    readFavoritesLocalStorage
 } from '../data/localStorage'
 import { useNavigate } from 'react-router-dom';
 

@@ -1,12 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { getModaldata } from "../features/FavoritesSlice";
+import { useDispatch } from "react-redux";
 import imgArrowLeft from '../img/arrow-left-solid.svg'
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { setPhotos } from "../features/SearchSlice";
-import {readFavoritesLocalStorage, updateDescriptionLocalStorage} from '../data/localStorage'
-import { useState } from "react";
-import { setFavoritesPhotos, setModal, setlocalStorage } from "../features/FavoritesSlice";
+import { setFavoritesPhotos, setModal } from "../features/FavoritesSlice";
 import {changeDescription} from '../features/FavoritesSlice'
 
 export const Modal = (props) => {

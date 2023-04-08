@@ -3,7 +3,6 @@ import {saveAs} from "file-saver";
 
 import floppyDiskSolid from '../img/floppy-disk-solid.svg'
 import styled from 'styled-components'
-import { useState, useEffect, useRef } from "react";
 import {  useSelector } from "react-redux";
 
 import { getDataFavoritesPhotos, getErrorFavoritesPhotos, 
