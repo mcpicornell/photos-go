@@ -117,20 +117,25 @@ const SearcherContainer = styled.section`
   }
 
   span{
-    margin-top: 150px;
+    margin-top: 180px;
     font-family: 'Poppins';
-        font-weight: 500;
         font-size: 30px;
-        line-height: 60px;
-        color: black;
-        text-decoration: underline 2px black;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 32px;
+        background-color: rgba(90, 114, 98, 1);
+        border-radius: 10px 40px 10px 40px;
+        color: rgba(252, 247, 247, 1);
+        padding: 5px 15px 5px 15px;
   }
 
     .myProfileSearcher{
       background: #FEF4F4;
-      border: none;
-      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 40px;
+      border-style: none;
+      box-shadow: 1px 1px 1px 1px rgba(90, 114, 98, 1);
+      border: 1px solid rgba(90, 114, 98, 1);
+      border-radius: 10px;
       margin-top: 25px;
       justify-content: center;
       width: 300px;
@@ -143,8 +148,8 @@ const SearcherContainer = styled.section`
 
     .searcherImg{
         position: absolute;
-        height: 10px;
-        width: 10px;
+        height: 15px;
+        width: 15px;
         left: 130px;
         bottom: 10px;
     }

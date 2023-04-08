@@ -28,8 +28,6 @@ export const FavoritesSlice = createSlice({
         state.isFavorite = false;
       },
       setModal: (state, action) => {
-        
-
         const favoriteList = readFavoritesLocalStorage();
         const modalList= favoriteList.filter(obj => 
           obj.id === action.payload.id
@@ -49,7 +47,7 @@ export const FavoritesSlice = createSlice({
           break;
         }
       }
-      updateDescriptionLocalStorage(state.localStorage); //Update del cambio de descripción a las fotos favoritas de forma local (sin hacer POST en la API)
+      updateDescriptionLocalStorage(state.localStorage); 
     }
     },
   });

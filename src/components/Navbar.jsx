@@ -43,9 +43,9 @@ export const Navbar = (props) => {
                         </div>
                         
                     </div>
-                    <div>
+                    <div className='hrefs'>
                         <a href='/'>Home</a>
-                        <a href='/myProfile'>MyProfile</a>
+                        <a id='myProfile' href='/myProfile'>MyProfile</a>
                     </div>                    
                 </div>
             </NavContainer>
@@ -61,7 +61,7 @@ export default Navbar;
 
 
 const NavContainer = styled.div`
-    .navBody{
+ .navBody{
         width: 100%;
         background-color: rgba(90, 114, 98, 1);
         display: flex;
@@ -110,10 +110,14 @@ const NavContainer = styled.div`
 
     .searcherImg{
         position: absolute;
-        height: 10px;
-        width: 10px;
-        right: 60px;
-        bottom: 28px;
+        height: 15px;
+        width: 15px;
+        right: 40px;
+        bottom: 25px;
+    }
+
+    #hrefs{
+        position: relative;
     }
 
     a{
@@ -126,9 +130,100 @@ const NavContainer = styled.div`
         text-decoration: none;
         margin-right: 2rem;
     }
+
+  
+
+
     button{
         border: none;
         background:none;
     }
 
+
+@media (max-width: 1281px) {
+    .navBody{
+        width: 100%;
+        background-color: rgba(90, 114, 98, 1);
+        display: flex;
+        flex-direction: column;
+        padding: .2rem;
+        position: fixed;
+        z-index: 5;
+        height: 150px;
+
+    }
+    h2{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 38px;
+        color: rgba(252, 247, 247, 1);
+        margin: 15px;
+        padding-right: 10px;
+        /* width: 50px; */
+        justify-content: left;
+        margin-left: -250px;
+    }
+
+    
+
+    .searcherImgContainer{
+        position: relative;
+    }
+
+    #inputNavValue{
+        margin-top: 20px;
+    }
+
+    form{
+        margin-top: -20px;
+    }
+
+    .navSearcher{
+        background: #FEF4F4;
+        border: 1px solid #000000;
+        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 40px;
+        width: 300px;
+        height: 30px;
+        position: relative;
+    }
+
+    .searcherImg{
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        right: 40px;
+        bottom: 25px;
+    }
+
+    a{
+        position: absolute;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 200;
+        font-size: 18px;
+        line-height: 48px;
+        color: rgba(252, 247, 247, 1);
+        text-decoration: none;
+        margin-right: 2rem;
+        top: 15px;
+        right: 15px;
+
+    }
+
+    #myProfile{
+        top: 50px;
+    }
+
+    button{
+        border: none;
+        background:none;
+    }
+
+
+    
+}
+   
 `

@@ -30,3 +30,24 @@ code {
   border: 5px solid white;
 
 }
+
+@media (max-width: 1281px) {
+  .cardsContainer{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.card{
+  margin-top: 200px;
+  margin-left: 10px;
+  border: 5px solid white;
+
+
+}
+
+}
