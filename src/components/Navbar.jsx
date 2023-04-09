@@ -27,6 +27,7 @@ export const Navbar = (props) => {
 
     const navToHome = () => {
         nav('../home');
+        window.location.reload();
     }
 
 
