@@ -22,11 +22,11 @@ export const Navbar = (props) => {
     }
 
     const navToMyProfile = ()=> {
-        nav('myProfile');
+        nav('../myProfile');
     }
 
     const navToHome = () => {
-        nav('/');
+        nav('../');
     }
 
 
@@ -49,8 +49,8 @@ export const Navbar = (props) => {
                         
                     </div>
                     <div className='hrefs'>
-                        <a onClick={navToHome}>Home</a>
-                        <a id='myProfile' onClick={navToMyProfile} >MyProfile</a>
+                        <span onClick={navToHome}>Home</span>
+                        <span id='myProfile' onClick={navToMyProfile} >MyProfile</span>
                     </div>                    
                 </div>
             </NavContainer>
@@ -125,7 +125,7 @@ const NavContainer = styled.div`
         position: relative;
     }
 
-    a{
+    span{
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 400;
@@ -134,6 +134,10 @@ const NavContainer = styled.div`
         color: rgba(252, 247, 247, 1);
         text-decoration: none;
         margin-right: 2rem;
+    }
+
+    span{
+        cursor: pointer
     }
 
   
@@ -202,7 +206,7 @@ const NavContainer = styled.div`
         bottom: 25px;
     }
 
-    a{
+    span{
         position: absolute;
         font-family: 'Poppins';
         font-style: normal;
@@ -215,6 +219,10 @@ const NavContainer = styled.div`
         top: 15px;
         right: 15px;
 
+    }
+
+    span:hover{
+        cursor: pointer;
     }
 
     #myProfile{

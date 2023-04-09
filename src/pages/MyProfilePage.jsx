@@ -31,9 +31,6 @@ export function MyProfilePage(){
   let date = new Date();
   date = date.toString();
 
-  // let description = new String();
-  // description = description.toString();
-
      content = [];
 
      favoriteListLS.forEach((favorite) => { 
@@ -53,7 +50,6 @@ export function MyProfilePage(){
        if(favoriteListLS.description === null){
         savedPhoto.description = 'helloThere';
        }
-       console.log(savedPhoto)
          content.push(
            <>
              <CardFav photo={savedPhoto}/>
