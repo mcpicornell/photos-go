@@ -5,9 +5,6 @@ import { useDispatch } from 'react-redux';
 import {setPhotos, removePhotos} from '../features/SearchSlice';
 import { useNavigate } from 'react-router-dom';
 
-// import { inputSearcherValue } from '../pages/SearcherPage';
-// import { searchForValue } from '../features/apiCall';
-
 
 export const Navbar = (props) => {
 
@@ -22,6 +19,14 @@ export const Navbar = (props) => {
         dispatch(setPhotos(inputValueRefactor));
    
         nav('/searcher');
+    }
+
+    const navToMyProfile = ()=> {
+        nav('myProfile');
+    }
+
+    const navToHome = () => {
+        nav('/');
     }
 
 
@@ -44,8 +49,8 @@ export const Navbar = (props) => {
                         
                     </div>
                     <div className='hrefs'>
-                        <a href='/'>Home</a>
-                        <a id='myProfile' href='/myProfile'>MyProfile</a>
+                        <a onClick={navToHome}>Home</a>
+                        <a id='myProfile' onClick={navToMyProfile} >MyProfile</a>
                     </div>                    
                 </div>
             </NavContainer>
@@ -155,13 +160,12 @@ const NavContainer = styled.div`
     h2{
         font-family: 'Poppins';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 24px;
         line-height: 38px;
         color: rgba(252, 247, 247, 1);
         margin: 15px;
         padding-right: 10px;
-        /* width: 50px; */
         justify-content: left;
         margin-left: -250px;
     }

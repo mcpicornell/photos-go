@@ -4,15 +4,13 @@ import Bottom from "../components/Bottom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhoto } from "../features/apiCall";
-import { getAllPhoto, getPhotoError, getPhotoStatus, getSearchedPhoto} from "../features/SearchSlice";
-import {Modal} from '../components/Modal';
+import { getAllPhoto, getPhotoError, getPhotoStatus} from "../features/SearchSlice";
 
 export const HomePage = (props) =>{
     const dispatch = useDispatch();
     let photoData = useSelector(getAllPhoto);
     const photoStatus = useSelector(getPhotoStatus)
     const photoError = useSelector(getPhotoError);
-    const searchedPhoto = useSelector(getSearchedPhoto);    
 
     useEffect(() => {
          if (photoStatus === "idle") {

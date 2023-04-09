@@ -165,9 +165,6 @@ const ModalContainer = styled.section`
     }
     
     label{
-        /* display: flex;
-        flex-direction: column;
-        text-align: left; */
         padding-left: 10px;
         padding-right: 10px;
         font-style: normal;

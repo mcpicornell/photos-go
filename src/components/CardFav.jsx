@@ -5,9 +5,7 @@ import trashSolid from '../img/trash-solid.svg';
 import {saveAs} from "file-saver";
 import {setModal, setlocalStorage} from "../features/FavoritesSlice";
 
-import {deleteFavoritesLocalStorage, 
-    readFavoritesLocalStorage
-} from '../data/localStorage'
+import {deleteFavoritesLocalStorage, readFavoritesLocalStorage} from '../data/localStorage'
 import { useNavigate } from 'react-router-dom';
 
 

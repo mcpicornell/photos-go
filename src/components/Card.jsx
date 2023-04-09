@@ -1,24 +1,11 @@
 import cloudArrowDownSolid from '../img/cloud-arrow-down-solid.svg';
 import {saveAs} from "file-saver";
-
 import floppyDiskSolid from '../img/floppy-disk-solid.svg'
 import styled from 'styled-components'
-import {  useSelector } from "react-redux";
-
-import { getDataFavoritesPhotos, getErrorFavoritesPhotos, 
-     getIsFavoritePhoto} from "../features/FavoritesSlice";
-
-
-
-import {deleteFavoritesLocalStorage, checkIfExistsFavorites, 
-    readfavoritesLocalStorage, createFavoritesInLocalStorage
-} from '../data/localStorage'
+import { createFavoritesInLocalStorage} from '../data/localStorage'
 
 
 export function Card(props){
-    const favoritesData = useSelector(getDataFavoritesPhotos)  
-    const favoritesError = useSelector(getErrorFavoritesPhotos)  
-    const favoritesPhoto = useSelector(getIsFavoritePhoto); 
 
     const downloadImg = () => {
         saveAs(props.photo.urlsFull, props.photo.id)
