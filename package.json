@@ -1,7 +1,7 @@
 {
   "name": "photos-go",
   "version": "0.1.0",
-  "homepage": "https://mcpicornell.github.io/photos-go/home",
+  "homepage": "https://mcpicornell.github.io/photos-go",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",

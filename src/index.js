@@ -19,6 +19,7 @@ root.render(
     <Provider store={store}>
       <HashRouter>
         <Routes>
+        <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/searcher" element={<SearcherPage />} />
 
