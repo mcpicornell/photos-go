@@ -7,7 +7,7 @@ import { HomePage } from '../src/pages/HomePage';
 import { MyProfilePage } from '../src/pages/MyProfilePage';
 import {SearcherPage} from '../src/pages/SearcherPage';
 import {InfoPage} from './pages/InfoPage'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import {FavoriteSearcherPage} from './pages/FavoriteSearcherPage'
