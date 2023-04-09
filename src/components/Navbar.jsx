@@ -26,7 +26,7 @@ export const Navbar = (props) => {
     }
 
     const navToHome = () => {
-        nav('../');
+        nav('../home');
     }
 
 
