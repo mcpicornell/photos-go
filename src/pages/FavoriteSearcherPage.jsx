@@ -39,7 +39,7 @@ export function FavoriteSearcherPage(){
     else{
       
       
-      let toSearch = descriptionSearched; //Will check if title have text 'search'
+      let toSearch = descriptionSearched; 
 
       console.log(favoriteListLS)
       

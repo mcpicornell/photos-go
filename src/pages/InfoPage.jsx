@@ -1,16 +1,13 @@
-import {useSelector } from "react-redux";
-import {Modal} from '../components/Modal'
+import { useSelector } from "react-redux";
+import { Modal } from "../components/Modal";
 import { getModaldata } from "../features/FavoritesSlice";
 
-export function InfoPage(){
+export function InfoPage() {
+  const modalData = useSelector(getModaldata);
 
-    const modalData = useSelector(getModaldata);
-
-    return(
-        <>
-
-        <Modal info={modalData}/> 
-    
-        </>
-    )
+  return (
+    <>
+      <Modal info={modalData} />
+    </>
+  );
 }
