@@ -24,13 +24,13 @@ export function MyProfilePage() {
     const value = document.getElementById("inputMyProfileValue").value;
     const valueRefactor = value.replace(/\s+/g, "-");
     const valueLowerCase = valueRefactor.toLowerCase();
-
     dispatch(setSearchDescription(valueLowerCase));
-
     nav("/myProfile/searcher");
   };
 
-  useEffect(() => {}, [favoriteListLS]);
+  useEffect(() => {
+
+  }, [favoriteListLS]);
 
   let content;
   if (favoriteListLS !== undefined) {
