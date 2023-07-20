@@ -10,6 +10,7 @@ import {
   readFavoritesLocalStorage,
 } from "../data/localStorage";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export function CardFav(props) {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export function CardFav(props) {
 
   const deleteLocalStorage = () => {
     deleteFavoritesLocalStorage(props.photo);
-    dispatch(setlocalStorage(readFavoritesLocalStorage()));
+    props.filteredFavoritesArr(readFavoritesLocalStorage());
   };
 
   const showModal = () => {
@@ -28,6 +29,10 @@ export function CardFav(props) {
   const downloadImg = () => {
     saveAs(props.photo.urlsFull, props.photo.id);
   };
+
+  useEffect(() => {
+    
+  },[props.photo, props.setFavoritesArr])
 
   return (
     <>
@@ -90,6 +95,7 @@ const CardContainer = styled.div`
     height: 250px;
     width: 300px;
     border: 0.5px solid black;
+    cursor: pointer;
   }
 
   img {

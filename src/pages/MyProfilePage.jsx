@@ -1,23 +1,25 @@
+import React, { useState, useEffect } from "react";
 import Bottom from "../components/Bottom";
 import Navbar from "../components/Navbar";
 import imgSearcher from "../img/magnifying-glass-solid.svg";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 import { CardFav } from "../components/CardFav";
 import {
   getLSinSlicer,
-  getErrorFavoritesPhotos,
+  setSearchDescription,
 } from "../features/FavoritesSlice";
-import { setSearchDescription } from "../features/FavoritesSlice";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { readFavoritesLocalStorage } from "../data/localStorage";
+import styled from "styled-components";
+
 
 export function MyProfilePage() {
   const favoriteListLS = useSelector(getLSinSlicer);
-  const errorFavoritePhoto = useSelector(getErrorFavoritesPhotos);
   const dispatch = useDispatch();
   const nav = useNavigate();
+  const [favoritesArr, setFavoritesArr] = useState(readFavoritesLocalStorage());
+  const [filteredFavoritesArr, setFilteredFavoritesArr] = useState(favoritesArr);
+  const [searchString, setSearchString] = useState("");
 
   const searchFavorite = (event) => {
     event.preventDefault();
@@ -28,18 +30,24 @@ export function MyProfilePage() {
     nav("/myProfile/searcher");
   };
 
+  const searcherHandlerOnChange = (event) => {
+    const inputValue = event.target.value;
+    setSearchString(inputValue);
+
+    const filteredPhotos = favoritesArr.filter((element) => {
+      const description = element.description.toLowerCase();
+      return description.includes(inputValue.toLowerCase());
+    });
+    setFilteredFavoritesArr(filteredPhotos);
+  };
+
   useEffect(() => {
 
-  }, [favoriteListLS]);
+  }, [favoritesArr, favoriteListLS]);
 
   let content;
-  if (favoriteListLS !== undefined) {
-    let date = new Date();
-    date = date.toString();
-
-    content = [];
-
-    favoriteListLS.forEach((favorite) => {
+  if (filteredFavoritesArr) {
+    content = filteredFavoritesArr.map((favorite) => {
       const savedPhoto = {
         id: favorite.id,
         description: favorite.description,
@@ -55,15 +63,14 @@ export function MyProfilePage() {
       if (favoriteListLS.description === null) {
         savedPhoto.description = "helloThere";
       }
-      content.push(
-        <>
-          <CardFav photo={savedPhoto} />
-        </>
+
+      return (
+        <React.Fragment key={favorite.id}>
+          <CardFav photo={savedPhoto} filteredFavoritesArr={filteredFavoritesArr} />
+        </React.Fragment>
       );
     });
   }
-
-  console.log(errorFavoritePhoto);
 
   return (
     <>
@@ -80,8 +87,9 @@ export function MyProfilePage() {
               id="inputMyProfileValue"
               className="myProfileSearcher"
               required
-            ></input>
-
+              onInput={searcherHandlerOnChange}
+              value={searchString || ""}
+            />
             <button type="submit">
               <img className="searcherImg" src={imgSearcher} alt="searcher" />
             </button>
@@ -91,7 +99,9 @@ export function MyProfilePage() {
 
       <section className="cardsContainer">{content}</section>
 
-      <footer>{<Bottom />}</footer>
+      <footer>
+        <Bottom />
+      </footer>
     </>
   );
 }
