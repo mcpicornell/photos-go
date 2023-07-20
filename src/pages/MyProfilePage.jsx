@@ -56,6 +56,7 @@ export function MyProfilePage() {
         likes: favorite.likes,
         urlsFull: favorite.urlsFull,
         urlsThumb: favorite.urlsThumb,
+        urlsRegular: favorite.urlsRegular,
         tags: favorite.tags,
         date: favorite.date,
       };

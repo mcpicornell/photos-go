@@ -40,7 +40,7 @@ export function CardFav(props) {
         <div className="card">
           <img
             className="imgLS"
-            src={props.photo.urlsFull}
+            src={props.photo.urlsRegular}
             onClick={showModal}
             alt=""
           />

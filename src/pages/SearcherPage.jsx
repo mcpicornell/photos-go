@@ -45,6 +45,7 @@ export const SearcherPage = (props) => {
           height: photo.height,
           likes: photo.likes,
           urlsFull: photo.urls.full,
+          urlsRegular: photo.urls.regular,
           urlsThumb: photo.urls.thumb,
           tags: photo.tags,
         };

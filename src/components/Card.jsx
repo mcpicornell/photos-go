@@ -20,7 +20,7 @@ export function Card(props) {
     <>
       <CardContainer>
         <div className="card">
-          <img className="imgAPI" src={props.photo.urlsFull} alt="" />
+          <img className="imgAPI" src={props.photo.urlsRegular} alt="" />
 
           <div className="cardButtonsContainer">
             <div id="addButtonContainer" className="buttonsContainer">
