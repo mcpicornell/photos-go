@@ -18,7 +18,7 @@ export function CardFav(props) {
 
   const deleteLocalStorage = () => {
     deleteFavoritesLocalStorage(props.photo);
-    props.filteredFavoritesArr(readFavoritesLocalStorage());
+    props.setFilteredFavoritesArr(readFavoritesLocalStorage());
   };
 
   const showModal = () => {
@@ -32,7 +32,7 @@ export function CardFav(props) {
 
   useEffect(() => {
     
-  },[props.photo, props.setFavoritesArr])
+  },[props.photo, props.setFilteredFavoritesArr])
 
   return (
     <>

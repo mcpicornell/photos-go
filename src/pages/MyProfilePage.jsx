@@ -66,7 +66,7 @@ export function MyProfilePage() {
 
       return (
         <React.Fragment key={favorite.id}>
-          <CardFav photo={savedPhoto} filteredFavoritesArr={filteredFavoritesArr} />
+          <CardFav photo={savedPhoto} setFilteredFavoritesArr={setFilteredFavoritesArr} />
         </React.Fragment>
       );
     });
