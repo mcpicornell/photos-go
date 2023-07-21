@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/photos-go/static/css/main.6a8bc725.css",
-    "main.js": "/photos-go/static/js/main.6d7c0f09.js",
+    "main.js": "/photos-go/static/js/main.948e5136.js",
     "static/js/787.ea39f8b6.chunk.js": "/photos-go/static/js/787.ea39f8b6.chunk.js",
     "static/media/cloud-arrow-down-solid.svg": "/photos-go/static/media/cloud-arrow-down-solid.de8eb2a65e7c2e5d20ab932973d0b54f.svg",
     "index.html": "/photos-go/index.html",
@@ -10,11 +10,11 @@
     "static/media/magnifying-glass-solid.svg": "/photos-go/static/media/magnifying-glass-solid.819dbf4f84c4cdd2721389d558571a86.svg",
     "static/media/arrow-left-solid.svg": "/photos-go/static/media/arrow-left-solid.261fc5b9e874e6b41662b6f4cb9bbc60.svg",
     "main.6a8bc725.css.map": "/photos-go/static/css/main.6a8bc725.css.map",
-    "main.6d7c0f09.js.map": "/photos-go/static/js/main.6d7c0f09.js.map",
+    "main.948e5136.js.map": "/photos-go/static/js/main.948e5136.js.map",
     "787.ea39f8b6.chunk.js.map": "/photos-go/static/js/787.ea39f8b6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6a8bc725.css",
-    "static/js/main.6d7c0f09.js"
+    "static/js/main.948e5136.js"
   ]
 }
