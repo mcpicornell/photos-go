@@ -6,7 +6,6 @@ import { setFavoritesPhotos, setModal } from "../features/FavoritesSlice";
 import { changeDescription } from "../features/FavoritesSlice";
 
 export const Modal = (props) => {
-  console.log(props);
   const dispatch = useDispatch();
 
   const nav = useNavigate();
@@ -25,8 +24,6 @@ export const Modal = (props) => {
     dispatch(setModal(props.info));
     nav("/myProfile/info");
   };
-
-  console.log(props.info);
 
   return (
     <>

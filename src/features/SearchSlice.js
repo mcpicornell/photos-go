@@ -12,7 +12,6 @@ export const SearchSlice = createSlice({
   reducers: {
     setPhotos: (state, action) => {
       state.searchedPhoto = action.payload;
-      console.log(state.searchedPhoto);
     },
     removePhotos: (state) => {
       state.status = "idle";

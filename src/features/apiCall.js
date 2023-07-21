@@ -39,9 +39,6 @@ export const getPhotoBySearch = createAsyncThunk(
         );
 
         if (!response.ok) {
-          console.log(
-            "Estos no son los androides que estás buscando... pero en el searcher"
-          );
         } else {
           const dataJson = await response.json();
           return dataJson;
