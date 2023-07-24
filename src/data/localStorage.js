@@ -1,3 +1,5 @@
+import { showToast } from "../features/toastify";
+
 export const createFavoritesInLocalStorage = (favoritesObj) => {
   const favoritesLocalStorage = localStorage.getItem("favorites");
   if (
@@ -14,6 +16,7 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
     for (let i = 0; i < favoritesLocalStorageObject.data.length; i++) {
       if (favoritesLocalStorageObject.data[i].id === favoritesObj.id) {
         objectExist = true;
+        showToast('This photo has been already added to MyProfile', 'error')
         break;
       }
     }
@@ -24,6 +27,7 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
         favoritesLocalStorageObject
       );
       localStorage.setItem("favorites", favoritesLocalStorageUpdatedEncoded);
+      showToast('Added to MyProfile!', 'success')
     }
   } else {
     let objectLocalStorage = {
@@ -40,17 +44,16 @@ export const createFavoritesInLocalStorage = (favoritesObj) => {
 
 export const deleteFavoritesLocalStorage = (favoritesObj) => {
   const favoritesLocalStorage = localStorage.getItem("favorites");
-  if (favoritesLocalStorage !== null) {
+  if (favoritesLocalStorage) {
     const favoritesLocalStorageParse = JSON.parse(favoritesLocalStorage);
     let favoritesFilt = [];
 
     for (let i = 0; i < favoritesLocalStorageParse.data.length; i++) {
       if (favoritesLocalStorageParse.data[i].id !== favoritesObj.id) {
         favoritesFilt.push(favoritesLocalStorageParse.data[i]);
+        showToast('Your photo has been successfully deleted!', 'success')
       }
     }
-
-    console.log(favoritesFilt);
 
     const favoritesFilteredData = {
       data: favoritesFilt,
@@ -76,4 +79,5 @@ export const updateDescriptionLocalStorage = (updatedData) => {
   };
   const updatedArrayDataToString = JSON.stringify(updatedArrayData);
   localStorage.setItem("favorites", updatedArrayDataToString);
+  showToast('Your description has beed updated!', 'success')
 };

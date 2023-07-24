@@ -11,6 +11,8 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import {FavoriteSearcherPage} from './pages/FavoriteSearcherPage'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -20,7 +22,6 @@ root.render(
       <HashRouter>
         <Routes>
         <Route path="/" element={<HomePage />} />
-          {/* <Route path="/home" element={<HomePage />} /> */}
           <Route path="/searcher" element={<SearcherPage />} />
 
           <Route path="/myProfile" element={<MyProfilePage />}/>
@@ -29,6 +30,7 @@ root.render(
           
         </Routes>
       </HashRouter>
+      <ToastContainer />
       </Provider>
   </React.StrictMode>
 );
