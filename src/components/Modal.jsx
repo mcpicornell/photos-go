@@ -47,7 +47,7 @@ export const Modal = (props) => {
             <input
               id="editDescription"
               placeholder="Write your description here..."
-            />
+            required />
             <button>Update Description</button>
           </form>
 
